@@ -1678,6 +1678,25 @@ function renderPortalView() {
     renderBillInfo();
     renderPaymentHistory();
     renderMessageHistory();
+
+// AI NOTIFIKASI — dipanggil hanya ketika notifikasi berubah
+const portalNotices = Array.isArray(currentCustomerData.targetedNotices)
+    ? currentCustomerData.targetedNotices
+    : [];
+
+if (portalNotices.length > 0) {
+    const fingerprint = portalNotices
+        .slice(0, 10)
+        .map(n => `${n?.id || ''}:${n?.updatedAt || n?.time || ''}:${n?.read ? 1 : 0}`)
+        .join('|');
+
+    if (fingerprint && fingerprint !== aiNotificationFingerprint) {
+        aiNotificationFingerprint = fingerprint;
+
+        triggerPortalAI('notifikasi', {
+            notificationCount: portalNotices.length
+        });
+    }
 }
 
 function renderBillInfo() {
