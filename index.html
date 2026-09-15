@@ -1427,6 +1427,7 @@ function logCustomerLoginSuccess(customer, loginMethod = 'WhatsApp') {
 // ==========================================
 let aiRequestController = null;
 let aiRequestSeq = 0;
+let aiNotificationFingerprint = '';
 
 function getPortalAIContext(action, extra = {}) {
     const c = currentCustomerData?.customer || {};
