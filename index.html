@@ -1432,6 +1432,53 @@ function getPortalAIContext(action, extra = {}) {
     const c = currentCustomerData?.customer || {};
     const bill = activeCurrentBillInfo || null;
 
+    const relevantNotifications =
+        Array.isArray(currentCustomerData?.targetedNotices)
+            ? currentCustomerData.targetedNotices.slice(0, 10).map(n => ({
+                id: n?.id || '',
+                title: n?.title || '',
+                msg: n?.msg || '',
+                time: n?.time || '',
+                source: n?.source || '',
+                category: n?.category || '',
+                messageType: n?.messageType || '',
+                read: !!n?.read,
+                requestType: n?.requestType || '',
+                targetPackage: n?.targetPackage || '',
+                targetSpeed: n?.targetSpeed || '',
+                targetPrice: Number(n?.targetPrice || 0),
+                threadId: n?.threadId || ''
+            }))
+            : [];
+
+    return {
+        action: String(action || 'general'),
+
+        customer: {
+            id: c.id || '',
+            name: c.name || '',
+            phone: c.phone || '',
+            package: c.package || '',
+            speed: c.speed || '',
+            status: c.status || ''
+        },
+
+        bill: bill ? {
+            invoiceId: bill.primary?.invoice?.id || '',
+            total: Number(bill.totalOutstanding || 0),
+            status: bill.totalOutstanding > 0 ? 'BELUM_LUNAS' : 'LUNAS',
+            dueDate: bill.primary?.invoice?.dueDate || ''
+        } : null,
+
+        notifications:
+            String(action || '').toLowerCase() === 'notifikasi'
+                ? relevantNotifications
+                : [],
+
+        extra: extra || {}
+    };
+}
+
     // Kirim data minimum yang diperlukan; jangan kirim seluruh billing_db.
     return {
         action: String(action || 'general'),
