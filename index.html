@@ -1,0 +1,3907 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Portal Pelanggan — RB HOME NET | V1.6 LIVE CHAT TOMBSTONE + TEMPLATE</title>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <!-- html2pdf dimuat hanya saat pelanggan benar-benar meminta PDF. -->
+    <style>
+        :root {
+            --primary: #1261ff;
+            --primary-dark: #0d4ed8;
+            --accent: #ff7a18;
+            --bg: #0b1220;
+            --surface: #101b33;
+            --surface-card: rgba(16, 27, 51, 0.94);
+            --card-bg: #101b33;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-active: rgba(18, 97, 255, 0.45);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-sub: #cbd5e1;
+            --green: #10b981;
+            --red: #ef4444;
+            --amber: #f59e0b;
+            --input-bg: rgba(255, 255, 255, 0.04);
+            --item-bg: rgba(255, 255, 255, 0.02);
+            --modal-overlay: rgba(11, 18, 32, 0.88);
+            --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-card: #ffffff;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --border-active: rgba(18, 97, 255, 0.5);
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --text-sub: #334155;
+            --green: #10b981;
+            --red: #ef4444;
+            --amber: #d97706;
+            --input-bg: #f8fafc;
+            --item-bg: #f8fafc;
+            --modal-overlay: rgba(15, 23, 42, 0.65);
+            --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: 
+                radial-gradient(1000px 500px at 90% -10%, rgba(18, 97, 255, 0.18), transparent 60%),
+                radial-gradient(800px 450px at -10% 100%, rgba(255, 122, 24, 0.12), transparent 50%),
+                var(--bg);
+            background-attachment: fixed;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Top Theme Bar */
+        .top-utility-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .theme-toggle-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .card {
+            background: var(--surface-card);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-card);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            filter: brightness(1.06);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+            filter: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(18, 97, 255, 0.35);
+        }
+
+        .btn-payment {
+            background: linear-gradient(135deg, var(--accent), #ea580c);
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(255, 122, 24, 0.35);
+            font-size: 14px;
+            padding: 14px;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        [data-theme="light"] .btn-secondary {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+
+        [data-theme="light"] .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-sm {
+            padding: 8px 12px;
+            font-size: 11px;
+            border-radius: 8px;
+            width: auto;
+        }
+
+        .btn-copy {
+            background: rgba(18, 97, 255, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(18, 97, 255, 0.35);
+            padding: 5px 11px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        [data-theme="light"] .btn-copy {
+            background: #eff6ff;
+            color: #2563eb;
+            border-color: #bfdbfe;
+        }
+
+        .btn-copy:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-copy.copied {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        #loginView {
+            margin-top: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .brand-logo {
+            width: 76px;
+            height: 76px;
+            object-fit: contain;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            margin-bottom: 12px;
+        }
+
+        .brand-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-title span {
+            color: var(--accent);
+        }
+
+        .brand-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .input-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-box i {
+            position: absolute;
+            left: 14px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .input-box input, .input-box select, .input-box textarea {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            padding: 14px 14px 14px 42px;
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        [data-theme="light"] .input-box input,
+        [data-theme="light"] .input-box select,
+        [data-theme="light"] .input-box textarea {
+            border-color: #cbd5e1;
+        }
+
+        .input-box textarea {
+            padding-left: 14px;
+            min-height: 85px;
+            resize: vertical;
+        }
+
+        .input-box input:focus, .input-box select:focus, .input-box textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(18, 97, 255, 0.2);
+        }
+
+
+
+        #portalView {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0 16px;
+        }
+
+        .nav-user small {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .nav-user h2 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-logout {
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        [data-theme="light"] .btn-logout {
+            background: #fee2e2;
+            color: #b91c1c;
+            border-color: #fca5a5;
+        }
+
+        .btn-logout:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+
+        .marquee-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 9px 14px;
+            margin-bottom: 16px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text);
+        }
+
+        [data-theme="light"] .marquee-container {
+            background: #ffffff;
+            border-color: #e2e8f0;
+        }
+
+        .marquee-container i {
+            color: var(--accent);
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .marquee-track {
+            white-space: nowrap;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marqueeSmooth 24s linear infinite;
+        }
+
+        @keyframes marqueeSmooth {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .net-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .net-active { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.35); }
+        .net-inactive { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.35); }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .profile-item {
+            background: var(--item-bg);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .profile-item .label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .profile-item .val {
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 4px;
+            word-break: break-word;
+            color: var(--text);
+        }
+
+        /* Identitas pelanggan ringkas di Beranda */
+        .home-customer-card {
+            background: linear-gradient(135deg, rgba(18,97,255,.08), rgba(255,138,0,.07));
+            border: 1px solid rgba(18,97,255,.16);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+        .home-customer-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+        .home-customer-title { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:800; color:var(--text); }
+        .home-customer-title i { color:var(--primary); }
+        .home-customer-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+        .home-customer-field { background:var(--card,#fff); border:1px solid var(--border); border-radius:12px; padding:10px 11px; min-width:0; }
+        .home-customer-field .label { font-size:9px; font-weight:800; color:var(--text-muted); text-transform:uppercase; letter-spacing:.35px; }
+        .home-customer-field .value { margin-top:4px; font-size:13px; font-weight:800; color:var(--text); word-break:break-word; }
+        @media(max-width:420px){ .home-customer-grid{grid-template-columns:1fr;} }
+
+        .bill-spotlight {
+            border-left: 4px solid var(--accent);
+        }
+
+        .bill-amount {
+            font-size: 26px;
+            font-weight: 800;
+            margin: 8px 0;
+            color: var(--text);
+        }
+
+        .tempo-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+        }
+
+        .tempo-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .tempo-warning { background: rgba(245, 158, 11, 0.2); color: var(--amber); }
+        .tempo-success { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+
+        [data-theme="light"] .tempo-danger { background: #fee2e2; color: #b91c1c; }
+        [data-theme="light"] .tempo-warning { background: #fef3c7; color: #b45309; }
+        [data-theme="light"] .tempo-success { background: #dcfce7; color: #15803d; }
+
+        .list-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .list-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* Thread & Message History Styles */
+        .msg-thread-card {
+            background: var(--item-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .msg-thread-card:hover {
+            border-color: var(--border-active);
+            transform: translateY(-1px);
+        }
+
+        .msg-thread-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .msg-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .msg-badge-waiting {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--amber);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+        }
+
+        .msg-badge-replied {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--green);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+
+        .bubble-box {
+            padding: 12px 14px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-size: 12.5px;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .bubble-out {
+            background: rgba(18, 97, 255, 0.08);
+            border: 1px solid rgba(18, 97, 255, 0.25);
+            border-left: 4px solid var(--primary);
+        }
+
+        .bubble-in {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-left: 4px solid var(--green);
+        }
+
+        /* Modal Base */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--modal-overlay);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 16px;
+        }
+
+        .modal-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 440px;
+            padding: 22px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.2s ease;
+        }
+
+        [data-theme="light"] .modal-card {
+            background: #ffffff;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        .bank-item-card {
+            background: var(--item-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+        }
+
+        .bank-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .bank-item-number {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pkg-option {
+            background: var(--item-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pkg-option:hover, .pkg-option.selected {
+            border-color: var(--primary);
+            background: rgba(18, 97, 255, 0.1);
+        }
+
+        [data-theme="light"] .pkg-option.selected {
+            background: #eff6ff;
+            border-color: var(--primary);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f172a;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            display: none;
+            z-index: 10000;
+            max-width: 90%;
+            text-align: center;
+            border-left: 4px solid var(--primary);
+        }
+
+        #pdfRenderContainer {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            width: 680px;
+            background: #ffffff;
+        }
+
+        /* AI ASSISTANT CONTEXTUAL */
+        .ai-assistant-card {
+            display: none;
+            background: linear-gradient(135deg, rgba(18,97,255,.10), rgba(124,58,237,.10));
+            border: 1px solid rgba(18,97,255,.28);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+        .ai-assistant-head { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+        .ai-assistant-head i { color: var(--primary); }
+        .ai-assistant-title { font-size:12px; font-weight:800; }
+        .ai-assistant-status { margin-left:auto; font-size:9px; color:var(--text-muted); }
+        .ai-assistant-body { font-size:12px; line-height:1.6; color:var(--text); }
+        .ai-assistant-body.loading { color:var(--text-muted); }
+        .ai-assistant-source { margin-top:8px; font-size:9px; color:var(--text-muted); }
+
+        /* AI FLOATING ACTION BUTTON + CHAT COMPOSER */
+        .ai-floating-btn {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            min-width: 150px;
+            height: 56px;
+            padding: 0 18px;
+            border: 0;
+            border-radius: 18px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 1400;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary), #7c3aed);
+            box-shadow: 0 12px 30px rgba(0,0,0,.24), 0 0 0 4px rgba(18,97,255,.10);
+            transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+            animation: aiFloatPulse 2.4s ease-in-out infinite;
+            touch-action: none;
+            user-select: none;
+        }
+        .ai-floating-btn.ai-dragging { cursor: grabbing; animation: none; transition: none; }
+        .ai-floating-btn:hover { transform: translateY(-3px); }
+        .ai-floating-btn:active { transform: scale(.97); }
+        .ai-floating-btn i { font-size: 20px; }
+        .ai-floating-label { font-size: 13px; font-weight: 800; letter-spacing: .1px; }
+        .ai-floating-badge {
+            position: absolute;
+            right: 8px;
+            top: 7px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #22c55e;
+            border: 2px solid rgba(255,255,255,.9);
+            box-sizing: border-box;
+        }
+
+        .ai-ask-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            background: rgba(15,23,42,.58);
+            align-items: flex-end;
+            justify-content: center;
+            padding: 12px;
+        }
+        .ai-ask-card {
+            width: min(520px, 100%);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: 0 24px 70px rgba(0,0,0,.32);
+            padding: 16px;
+            overflow: hidden;
+        }
+        .ai-ask-head {
+            display:flex;
+            align-items:center;
+            gap:11px;
+            margin-bottom:14px;
+        }
+        .ai-ask-head-icon {
+            width:40px;
+            height:40px;
+            flex:0 0 40px;
+            border-radius:13px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#fff;
+            background:linear-gradient(135deg,var(--primary),#7c3aed);
+            box-shadow:0 7px 18px rgba(18,97,255,.22);
+        }
+        .ai-ask-head-icon i { color:#fff; font-size:18px; }
+        .ai-ask-title-row {
+            display:flex;
+            align-items:center;
+            gap:7px;
+        }
+        .ai-ask-title { font-size:14px; font-weight:800; color:var(--text); }
+        .ai-ask-online {
+            width:7px;
+            height:7px;
+            border-radius:50%;
+            background:#22c55e;
+            box-shadow:0 0 0 3px rgba(34,197,94,.12);
+        }
+        .ai-ask-subtitle {
+            font-size:10px;
+            color:var(--text-muted);
+            margin-top:3px;
+            line-height:1.45;
+        }
+        .ai-ask-close {
+            margin-left:auto;
+            width:34px;
+            height:34px;
+            flex:0 0 34px;
+            border:1px solid var(--border);
+            border-radius:10px;
+            background:var(--item-bg);
+            color:var(--text-muted);
+            font-size:19px;
+            line-height:1;
+            cursor:pointer;
+        }
+        .ai-ask-chat-history {
+            display:flex;
+            flex-direction:column;
+            gap:9px;
+            max-height:42vh;
+            min-height:0;
+            overflow-y:auto;
+            padding:2px 2px 10px;
+            margin-bottom:2px;
+            scroll-behavior:smooth;
+        }
+        .ai-ask-chat-history:empty { display:none; }
+        .ai-ask-bubble {
+            max-width:86%;
+            padding:9px 11px;
+            border-radius:14px;
+            font-size:12px;
+            line-height:1.55;
+            white-space:pre-wrap;
+            word-break:break-word;
+        }
+        .ai-ask-bubble.user {
+            align-self:flex-end;
+            color:#fff;
+            background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+            border-bottom-right-radius:5px;
+        }
+        .ai-ask-bubble.ai {
+            align-self:flex-start;
+            color:var(--text);
+            background:linear-gradient(135deg,rgba(18,97,255,.08),rgba(255,122,24,.10));
+            border:1px solid rgba(18,97,255,.16);
+            border-bottom-left-radius:5px;
+        }
+        .ai-ask-bubble.ai.loading { color:var(--text-muted); }
+        .ai-ask-bubble-label {
+            display:block;
+            margin-bottom:3px;
+            font-size:9px;
+            font-weight:800;
+            opacity:.72;
+        }
+        .ai-ask-input {
+            display:block;
+            width:100%;
+            min-height:104px;
+            max-height:220px;
+            resize:vertical;
+            box-sizing:border-box;
+            border:2px solid var(--border-active);
+            border-radius:14px;
+            background:#ffffff;
+            color:#0f172a;
+            padding:13px 14px;
+            font:inherit;
+            font-size:13px;
+            line-height:1.55;
+            outline:none;
+            box-shadow:inset 0 1px 2px rgba(15,23,42,.04);
+        }
+        [data-theme="dark"] .ai-ask-input {
+            background:#0f172a;
+            color:#f8fafc;
+        }
+        .ai-ask-input::placeholder { color:#94a3b8; }
+        .ai-ask-input:focus {
+            border-color:var(--primary);
+            box-shadow:0 0 0 4px rgba(18,97,255,.10);
+        }
+        .ai-ask-hint {
+            margin-top:7px;
+            font-size:9px;
+            color:var(--text-muted);
+        }
+        .ai-ask-actions {
+            display:grid;
+            grid-template-columns:1fr 1.35fr;
+            gap:9px;
+            margin-top:12px;
+        }
+        .ai-ask-btn {
+            min-height:46px;
+            border-radius:12px;
+            padding:10px 13px;
+            font-size:12px;
+            font-weight:800;
+            cursor:pointer;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:7px;
+        }
+        .ai-ask-cancel {
+            background:var(--item-bg);
+            color:var(--text-muted);
+            border:1px solid var(--border);
+        }
+        .ai-ask-send {
+            background:var(--primary);
+            color:#fff;
+            border:1px solid var(--primary);
+            box-shadow:0 7px 18px rgba(18,97,255,.20);
+        }
+        .ai-ask-send:disabled { opacity:.65; cursor:wait; }
+        @media (max-width: 420px) {
+            .ai-floating-btn {
+                right:12px;
+                bottom:12px;
+                min-width:138px;
+                height:54px;
+                padding:0 15px;
+            }
+            .ai-ask-modal { padding:10px; }
+            .ai-ask-card { border-radius:20px; padding:14px; }
+            .ai-ask-actions { grid-template-columns:1fr 1.2fr; }
+        }
+
+        
+        /* ===== SAHABATRB BLUE + ORANGE VISUAL REFRESH ===== */
+        [data-theme="light"] body {
+            background:
+                linear-gradient(180deg, #eef5ff 0%, #f7faff 32%, #ffffff 70%, #fffaf5 100%);
+        }
+        [data-theme="light"] .card {
+            background:#ffffff;
+            border:1px solid #dce6f2;
+            box-shadow:0 7px 22px rgba(15,23,42,.07);
+        }
+        [data-theme="light"] .bill-spotlight {
+            border-left:4px solid var(--accent);
+            box-shadow:0 8px 24px rgba(255,122,24,.10);
+        }
+        [data-theme="light"] .profile-item,
+        [data-theme="light"] .package-summary-card .profile-item {
+            background:#f7faff;
+            border-color:#dbe6f3;
+        }
+        [data-theme="light"] .service-icon {
+            background:#eef5ff;
+            color:var(--primary);
+            border:1px solid #d7e6ff;
+        }
+        .services-card {
+            border:1px solid #cfe0f7;
+            background:linear-gradient(180deg,#ffffff 0%,#f7faff 100%);
+        }
+        .services-all-btn {
+            background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+        }
+        .ai-assistant-card {
+            background:linear-gradient(135deg,rgba(18,97,255,.08),rgba(255,122,24,.08));
+            border-color:rgba(18,97,255,.24);
+        }
+        .ai-floating-btn {
+            background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 68%,var(--accent) 100%);
+        }
+        .ai-ask-head-icon {
+            background:linear-gradient(135deg,var(--primary),var(--accent));
+        }
+        .notification-hub {
+            padding:14px;
+            border-radius:20px;
+            background:linear-gradient(180deg,#ffffff,#f8fbff);
+            border:1px solid #dbe6f3;
+            box-shadow:0 7px 22px rgba(15,23,42,.06);
+        }
+        .notification-hub-head { margin-bottom:12px; }
+        .notification-hub-title { color:#162033; }
+        .notification-hub-badge { background:#fff3e8; color:#ea580c; border-color:#fed7aa; }
+        .portal-bottom-nav {
+            border-top:2px solid #e7eef8;
+        }
+        .portal-nav-item.active { color:var(--primary); }
+        .portal-nav-item.active i {
+            background:rgba(18,97,255,.10);
+            border-radius:10px;
+            padding:4px 9px;
+        }
+        .portal-nav-item.active span { color:var(--primary); }
+        .btn-primary {
+            background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+        }
+        .btn-payment {
+            background:linear-gradient(135deg,var(--accent),#ea580c);
+        }
+        @media (max-width:480px) {
+            body { padding:12px 10px 10px; }
+            .app-container { max-width:480px; }
+        }
+
+        /* ===== SAHABATRB MOBILE PORTAL LAYOUT ===== */
+        #portalView { padding-bottom: 88px; }
+        #portalTabHost { min-height: 20px; }
+        .portal-tab { display: none; animation: fadeIn .2s ease; }
+        .portal-tab.is-active { display: block; }
+        .portal-tab > *:last-child { margin-bottom: 0; }
+        .notification-hub { margin-bottom: 16px; }
+        .notification-hub-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+        .notification-hub-title { font-size:15px; font-weight:800; }
+        .notification-hub-badge { display:inline-flex; align-items:center; gap:5px; background:#fee2e2; color:#dc2626; border:1px solid #fecaca; border-radius:999px; padding:5px 9px; font-size:10px; font-weight:800; }
+        .services-card { padding: 12px; }
+        .services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+        .service-item { min-width:0; border:0; background:transparent; color:var(--text); text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; padding:9px 3px; cursor:pointer; font:inherit; }
+        .service-icon { width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(18,97,255,.10); color:var(--primary); font-size:19px; }
+        .service-item span:last-child { font-size:10.5px; font-weight:700; text-align:center; line-height:1.25; }
+        .services-all-btn { width:100%; border:0; border-radius:12px; margin-top:8px; padding:11px; background:linear-gradient(135deg,var(--primary),#7c3aed); color:#fff; font:inherit; font-size:12px; font-weight:800; cursor:pointer; }
+        .services-more { display:none; grid-template-columns:1fr; gap:7px; margin-top:8px; }
+        .services-more.open { display:grid; }
+        .service-more-item { border:1px solid var(--border); background:var(--item-bg); color:var(--text); border-radius:11px; padding:11px 12px; text-align:left; font:inherit; font-size:11px; font-weight:700; cursor:pointer; }
+        .service-more-item i { width:20px; color:var(--primary); }
+        .portal-bottom-nav { position:fixed; left:50%; bottom:0; transform:translateX(-50%); width:min(480px,100vw); min-height:68px; padding:7px 6px calc(7px + env(safe-area-inset-bottom)); background:rgba(255,255,255,.96); border-top:1px solid #e2e8f0; box-shadow:0 -8px 24px rgba(15,23,42,.10); display:grid; grid-template-columns:repeat(5,1fr); z-index:1300; backdrop-filter:blur(14px); }
+        [data-theme="dark"] .portal-bottom-nav { background:rgba(16,27,51,.96); border-top-color:var(--border); }
+        .portal-nav-item { border:0; background:transparent; color:#94a3b8; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; font:inherit; cursor:pointer; padding:4px 2px; }
+        .portal-nav-item i { font-size:18px; }
+        .portal-nav-item span { font-size:9.5px; font-weight:700; }
+        .portal-nav-item.active { color:var(--primary); }
+        .portal-nav-item.active i { transform:translateY(-1px); }
+        #aiFloatingBtn { bottom:82px; }
+        @media (max-width:420px) { #aiFloatingBtn { bottom:78px; } }
+        @media (min-width:481px) { .portal-bottom-nav { border-radius:18px 18px 0 0; } }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== PPPoE STATUS — ISOLATED PORTAL ADD-ON ===== */
+        .pppoe-status-card {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 16px;
+            background:
+                linear-gradient(135deg, rgba(18,97,255,.06), rgba(255,122,24,.05)),
+                var(--surface-card);
+        }
+        .pppoe-status-head {
+            display:flex;
+            align-items:center;
+            gap:12px;
+            margin-bottom:14px;
+        }
+        .pppoe-modem-icon {
+            width:46px;
+            height:46px;
+            flex:0 0 46px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:14px;
+            background:linear-gradient(135deg, rgba(18,97,255,.12), rgba(255,122,24,.10));
+            border:1px solid rgba(18,97,255,.16);
+            color:var(--primary);
+        }
+        .pppoe-modem-icon svg {
+            width:26px;
+            height:26px;
+            display:block;
+        }
+        .pppoe-status-title {
+            font-size:14px;
+            font-weight:800;
+            color:var(--text);
+        }
+        .pppoe-status-subtitle {
+            margin-top:3px;
+            font-size:10.5px;
+            color:var(--text-muted);
+            line-height:1.4;
+        }
+        .pppoe-status-box {
+            padding:13px;
+            border-radius:13px;
+            background:var(--item-bg);
+            border:1px solid var(--border);
+        }
+        .pppoe-status-badge {
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            font-size:12px;
+            font-weight:800;
+            line-height:1.35;
+        }
+        .pppoe-status-badge.online { color:#10b981; }
+        .pppoe-status-badge.offline { color:#ef4444; }
+        .pppoe-status-badge.unavailable { color:var(--text-muted); }
+        .pppoe-status-description {
+            margin-top:6px;
+            font-size:11px;
+            line-height:1.55;
+            color:var(--text-sub);
+        }
+        .pppoe-updated-at {
+            margin-top:10px;
+            font-size:10px;
+            color:var(--text-muted);
+        }
+        .pppoe-updated-at strong {
+            color:var(--text-sub);
+            font-weight:700;
+        }
+        .pppoe-refresh-btn {
+            margin-top:12px;
+            min-height:42px;
+            font-size:12px;
+        }
+        @media (max-width:420px) {
+            .pppoe-status-card { padding:16px; }
+            .pppoe-status-title { font-size:13.5px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="toast" class="toast"></div>
+
+<!-- AI CHAT / TANYA AI -->
+<div id="aiAskModal" class="ai-ask-modal" role="dialog" aria-modal="true" aria-labelledby="aiAskTitle">
+    <div class="ai-ask-card" role="document">
+        <div class="ai-ask-head">
+            <div class="ai-ask-head-icon" aria-hidden="true">
+                <i class="fas fa-wand-magic-sparkles"></i>
+            </div>
+            <div style="min-width:0;">
+                <div class="ai-ask-title-row">
+                    <div id="aiAskTitle" class="ai-ask-title">SahabatRB AI</div>
+                    <span class="ai-ask-online" aria-label="AI tersedia"></span>
+                </div>
+                <div class="ai-ask-subtitle">Tanya apa saja tentang akun Anda. AI hanya menggunakan konteks pelanggan yang sedang login.</div>
+            </div>
+            <button type="button" class="ai-ask-close" onclick="closeAIAskModal()" aria-label="Tutup">×</button>
+        </div>
+
+        <div id="aiAskChatHistory" class="ai-ask-chat-history" aria-live="polite" aria-label="Percakapan AI"></div>
+
+        <textarea id="aiAskInput"
+            class="ai-ask-input"
+            maxlength="1000"
+            placeholder="Tulis pertanyaan Anda di sini..."
+            aria-label="Pertanyaan untuk SahabatRB AI"></textarea>
+
+        <div class="ai-ask-hint">Tekan Enter untuk kirim · Shift + Enter untuk baris baru</div>
+
+        <div class="ai-ask-actions">
+            <button type="button" class="ai-ask-btn ai-ask-cancel" onclick="closeAIAskModal()">
+                Tutup
+            </button>
+            <button type="button" id="aiAskSendBtn" class="ai-ask-btn ai-ask-send" onclick="submitAIAsk()">
+                <i class="fas fa-paper-plane"></i> Kirim Pertanyaan
+            </button>
+        </div>
+    </div>
+</div>
+
+<button id="aiFloatingBtn"
+    class="ai-floating-btn"
+    type="button"
+    onclick="openAIAskModal()"
+    aria-label="Tanya AI SahabatRB"
+    title="Tanya AI SahabatRB">
+    <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+    <span class="ai-floating-label">Tanya AI</span>
+    <span class="ai-floating-badge" aria-hidden="true"></span>
+</button>
+
+<!-- MODAL DETAIL TAGIHAN & PEMBAYARAN LANGSUNG -->
+<div id="modalPayment" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3 style="font-size: 16px; font-weight: 800;"><i class="fas fa-file-invoice-dollar" style="color: var(--primary);"></i> Detail Tagihan &amp; Pembayaran</h3>
+            <button type="button" class="modal-close" onclick="closePaymentModal()">&times;</button>
+        </div>
+
+        <div style="background: var(--item-bg); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 14px; font-size: 12px; line-height: 1.6;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 6px;">
+                <span style="color: var(--text-muted);">Nomor Invoice:</span>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                    <b id="payModalInvId" style="color:var(--text);">-</b>
+                    <button type="button" class="btn-copy" onclick="copyText('payModalInvId', this)">Salin</button>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 6px 0;">
+                <span style="color: var(--text-muted);">Periode Tagihan:</span>
+                <b id="payModalPeriod">-</b>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 6px 0;">
+                <span style="color: var(--text-muted);">Jatuh Tempo:</span>
+                <b id="payModalDueDate" style="color: var(--amber);">-</b>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 6px 0;">
+                <span style="color: var(--text-muted);">Nominal Asli:</span>
+                <span id="payModalAmount">-</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 6px 0;">
+                <span style="color: var(--text-muted);">Sudah Dibayar:</span>
+                <span id="payModalPaid" style="color: var(--green);">-</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px;">
+                <span style="font-weight: 800;">Sisa Tagihan:</span>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                    <b id="payModalRemaining" style="color: var(--red); font-size: 16px;">-</b>
+                    <button type="button" class="btn-copy" onclick="copyAmount('payModalRemaining', this)">Salin Nominal</button>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary" id="btnDownloadUnpaidInvoice" style="margin-bottom: 16px; font-size: 12px; padding: 10px;">
+            <i class="fas fa-file-pdf" style="color: var(--red);"></i> Unduh Invoice Belum Lunas (PDF)
+        </button>
+
+        <div style="margin-bottom: 16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <b style="font-size: 12px; color: var(--primary);"><i class="fas fa-building-columns"></i> Rekening Pembayaran Resmi:</b>
+            </div>
+            <div id="bankAccountsListContainer"></div>
+        </div>
+
+        <div id="payModalQrisContainer" style="display: none; text-align: center; background: #ffffff; border-radius: 14px; padding: 14px; margin-bottom: 16px; border: 1px solid var(--border);">
+            <b style="font-size: 12px; color: #0f172a; display: block; margin-bottom: 8px;"><i class="fas fa-qrcode"></i> Scan QRIS Pembayaran</b>
+            <img id="payModalQrisImg" src="" alt="QRIS" style="max-width: 140px; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 8px;">
+            <small style="display:block; color:#64748b; font-size:10px; margin-top:6px;">Dapat di-scan melalui BCA, GoPay, OVO, DANA, ShopeePay, dan Mobile Banking lainnya.</small>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL UPGRADE / DOWNGRADE LAYANAN -->
+<div id="modalUpgrade" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3 style="font-size: 15px; font-weight: 800;"><i class="fas fa-arrow-up-right-dots" style="color: var(--accent);"></i> Ubah Paket Layanan</h3>
+            <button type="button" class="modal-close" onclick="closeUpgradeModal()">&times;</button>
+        </div>
+
+        <div style="background:var(--item-bg); border:1px solid var(--border); border-radius:12px; padding:12px; margin-bottom:14px; font-size:12px; line-height:1.6;">
+            <div>Paket saat ini: <b id="modalCurrentPkg" style="color: var(--text);">-</b></div>
+            <div>Tarif saat ini: <b id="modalCurrentPrice" style="color: var(--green);">-</b></div>
+        </div>
+
+        <label style="display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Pilih Paket Tujuan</label>
+        <div id="packageListContainer" style="max-height: 220px; overflow-y: auto; margin-bottom: 16px;"></div>
+
+        <div id="upgradeStatusBox" style="display: none; padding: 12px; border-radius: 10px; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--amber); margin-bottom: 14px;">
+            <p id="upgradeStatusText" style="font-size: 12px; color: var(--amber); margin: 0; line-height: 1.5;">
+                <i class="fas fa-clock"></i> <b>Permintaan Terkirim ke Billing (WAITING / PENDING)</b><br>
+                Permintaan perubahan paket Anda telah tercatat dan tersinkronisasi ke sistem Billing Owner/Admin.
+            </p>
+        </div>
+
+        <button type="button" id="btnSubmitUpgrade" class="btn btn-primary" onclick="submitUpgradeRequest()">
+            KIRIM PERMINTAAN PERUBAHAN
+        </button>
+    </div>
+</div>
+
+<!-- MODAL BARU: RINCIAN PERCAKAPAN RIWAYAT PESAN (THREAD DETAIL) -->
+<div id="modalMsgThread" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <div>
+                <span id="threadDetailCategoryBadge" class="msg-badge msg-badge-waiting" style="margin-bottom: 4px;">Laporan</span>
+                <h3 id="threadDetailTitle" style="font-size: 15px; font-weight: 800; color: var(--text); margin-top: 2px;">-</h3>
+            </div>
+            <button type="button" class="modal-close" onclick="closeMessageThreadModal()">&times;</button>
+        </div>
+
+        <div id="threadDetailConversationList" style="margin-bottom: 16px; max-height: 60vh; overflow-y: auto; padding-right: 2px;">
+            <!-- Percakapan terisi secara dinamis -->
+        </div>
+
+        <button type="button" class="btn btn-secondary" onclick="closeMessageThreadModal()">
+            Tutup Riwayat
+        </button>
+    </div>
+</div>
+
+<div class="app-container">
+
+    <!-- TOP UTILITY BAR (THEME TOGGLE) -->
+    <div class="top-utility-bar">
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" onclick="togglePortalTheme()" title="Ganti Tema (Dark / Light)">
+            <i class="fas fa-sun" id="themeToggleIcon"></i>
+        </button>
+    </div>
+
+    <!-- 1. FORM LOGIN WHATSAPP (ALUR B - TETAP UTUH & PRIMER SAAT TANPA TOKEN) -->
+    <div id="loginView">
+        <div class="brand-header">
+            <img id="loginLogo" class="brand-logo" src="https://files.catbox.moe/hks861.png" alt="RB Home Logo">
+            <h1 class="brand-title" id="loginBrandTitle">RB HOME <span>NET</span></h1>
+            <p class="brand-sub" id="loginBrandSub">Customer Care Portal</p>
+        </div>
+
+        <div class="card">
+            <h2 style="font-size: 16px; margin-bottom: 6px;">Masuk Pelanggan</h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Masukkan nomor WhatsApp Anda yang terdaftar untuk memeriksa tagihan dan layanan internet.</p>
+
+            <form onsubmit="handlePortalLogin(event)">
+                <div class="input-group">
+                    <label>Nomor WhatsApp</label>
+                    <div class="input-box">
+                        <i class="fab fa-whatsapp"></i>
+                        <input type="tel" id="inputPhone" placeholder="Contoh: 081234567890 / 6281234567890 / 81234567890" inputmode="numeric" required autocomplete="tel">
+                    </div>
+                    <small style="color: var(--text-muted); font-size: 11px; margin-top: 6px; display: block;">Format 08xx, 628xx, atau 8xx otomatis dikenali.</small>
+                </div>
+
+                <button type="submit" id="btnSubmitLogin" class="btn btn-primary">
+                    <i class="fas fa-right-to-bracket"></i> MASUK KE PORTAL
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. DASHBOARD PELANGGAN -->
+    <div id="portalView">
+        <div class="nav-header">
+            <div class="nav-user">
+                <small id="greetingText">Selamat Datang,</small>
+                <h2 id="custName">-</h2>
+            </div>
+            <div class="nav-actions">
+                <button type="button" class="btn-logout" onclick="handleLogout()"><i class="fas fa-power-off"></i> Keluar</button>
+            </div>
+        </div>
+
+        <!-- Banner Loading Cloud -->
+        <div id="cloudLoadingBanner" style="display:none; background:rgba(18,97,255,0.12); border:1px solid rgba(18,97,255,0.3); border-radius:10px; padding:8px 12px; margin-bottom:12px; font-size:11px; color:var(--primary); text-align:center;">
+            <i class="fas fa-spinner fa-spin"></i> Menyinkronkan data terbaru dari Cloud...
+        </div>
+
+        <div id="portalTabHost">
+            <section id="portalTabHome" class="portal-tab is-active" data-tab="home"></section>
+            <section id="portalTabTransactions" class="portal-tab" data-tab="transactions"></section>
+            <section id="portalTabPackage" class="portal-tab" data-tab="package"></section>
+            <section id="portalTabHelp" class="portal-tab" data-tab="help"></section>
+            <section id="portalTabAccount" class="portal-tab" data-tab="account"></section>
+        </div>
+
+        <!-- AI ASSISTANT KONTEKSTUAL v1.3.1: otomatis dari aksi/menu + floating ask -->
+        <div id="aiAssistantCard" class="ai-assistant-card" aria-live="polite">
+            <div class="ai-assistant-head">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span class="ai-assistant-title">Asisten AI SahabatRB</span>
+                <span id="aiAssistantStatus" class="ai-assistant-status">Siap</span>
+            </div>
+            <div id="aiAssistantBody" class="ai-assistant-body">AI akan membantu menjelaskan konteks menu yang sedang Anda buka.</div>
+            <div id="aiAssistantSource" class="ai-assistant-source"></div>
+        </div>
+
+        <!-- Pengumuman (Broadcast Running Text) -->
+        <div class="marquee-container" id="boxAnnouncement" style="display: none;">
+            <i class="fas fa-bullhorn"></i>
+            <div class="marquee-track">
+                <span class="marquee-text" id="custAnnouncement">-</span>
+            </div>
+        </div>
+
+        <!-- Pesan / Notifikasi Langsung dari Admin ke Pelanggan Ini (Sanitized) -->
+        <div id="boxCustomerNotice" style="display:none; background:rgba(245,158,11,0.1); border:1px solid var(--amber); border-radius:14px; padding:12px 14px; margin-bottom:16px;">
+            <b style="color:var(--amber); font-size:12px; display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                <i class="fas fa-bell"></i> Pesan dari Admin / RB Home:
+            </b>
+            <div id="custNoticeContent" style="font-size:12px; color:var(--text); line-height:1.5;"></div>
+        </div>
+
+        <!-- Profil & Status Layanan -->
+        <div class="card" id="profileCard">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <span style="font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">ID PELANGGAN</span>
+                    <h3 id="custId" style="font-size: 17px; color: var(--primary); font-weight: 800;">-</h3>
+                </div>
+                <div>
+                    <span id="custNetStatus" class="net-badge net-active"><i class="fas fa-circle-check"></i> AKUN AKTIF</span>
+                </div>
+            </div>
+
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <div class="label">Paket Langganan</div>
+                    <div class="val" id="custPackage">-</div>
+                </div>
+                <div class="profile-item">
+                    <div class="label">Kecepatan</div>
+                    <div class="val" id="custSpeed">-</div>
+                </div>
+                <div class="profile-item" style="grid-column: span 2;">
+                    <div class="label">Alamat Pemasangan</div>
+                    <div class="val" id="custAddress">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tagihan Saat Ini & Aksi Pembayaran Langsung -->
+        <div class="card bill-spotlight" id="billCard">
+            <span style="font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">TAGIHAN SAAT INI</span>
+            <div class="bill-amount" id="custBillAmount">Rp 0</div>
+            <div id="custTempoBadge" class="tempo-badge tempo-warning">-</div>
+
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6;">
+                <div>Nomor Invoice: <b id="custInvoiceId" style="color: var(--text);">-</b></div>
+                <div>Jatuh Tempo: <b id="custDueDate" style="color: var(--text);">-</b></div>
+                <div>Status Tagihan: <b id="custBillStatus" style="color: var(--accent);">-</b></div>
+            </div>
+
+            <div id="unpaidActionButtons" style="display: flex; flex-direction: column; gap: 8px;">
+                <button type="button" id="btnOpenPaymentModal" class="btn btn-payment" onclick="openPaymentModal()">
+                    <i class="fas fa-credit-card"></i> LIHAT DETAIL &amp; CARA BAYAR
+                </button>
+                <button type="button" id="btnDownloadActiveUnpaid" class="btn btn-secondary btn-sm" style="width: 100%;" onclick="downloadCurrentUnpaidPDF()">
+                    <i class="fas fa-file-pdf" style="color: var(--red);"></i> Unduh Invoice Belum Lunas (PDF)
+                </button>
+            </div>
+        </div>
+
+        <!-- MENU LAYANAN UTAMA -->
+        <div class="card services-card" id="servicesCard">
+            <div class="services-grid">
+                <button type="button" class="service-item" onclick="openPaymentModal(); portalGo('transactions')">
+                    <span class="service-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span>Tagihan</span>
+                </button>
+                <a class="service-item" href="https://www.speedtest.net/" target="_blank" rel="noopener">
+                    <span class="service-icon"><i class="fas fa-gauge-high"></i></span>
+                    <span>Speedtest</span>
+                </a>
+                <button type="button" class="service-item" onclick="portalGo('help')">
+                    <span class="service-icon"><i class="fas fa-headset"></i></span>
+                    <span>Bantuan</span>
+                </button>
+                <button type="button" class="service-item" onclick="openUpgradeModal(); portalGo('package')">
+                    <span class="service-icon"><i class="fas fa-arrow-up-right-dots"></i></span>
+                    <span>Ubah Paket</span>
+                </button>
+            </div>
+            <button type="button" class="services-all-btn" onclick="toggleAllServices()">
+                <i class="fas fa-grip"></i> <span id="servicesAllLabel">Lihat Semua</span>
+            </button>
+            <div id="servicesMore" class="services-more" aria-hidden="true">
+                <button type="button" class="service-more-item" onclick="portalGo('transactions')"><i class="fas fa-clock-rotate-left"></i> Riwayat Pembayaran</button>
+                <button type="button" class="service-more-item" onclick="portalGo('help')"><i class="fas fa-envelope-open-text"></i> Riwayat Pesan</button>
+                <button type="button" class="service-more-item" onclick="portalGo('help')"><i class="fas fa-triangle-exclamation"></i> Lapor Gangguan</button>
+                <button type="button" class="service-more-item" onclick="portalGo('package')"><i class="fas fa-wifi"></i> Detail Paket</button>
+                <button type="button" class="service-more-item" onclick="portalGo('account')"><i class="fas fa-user"></i> Data Pelanggan</button>
+            </div>
+        </div>
+
+        <!-- Tombol Aksi: Speedtest & Upgrade/Downgrade -->
+        <div id="quickActions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+            <a href="https://www.speedtest.net/" target="_blank" class="btn btn-secondary" style="font-size: 13px;">
+                <i class="fas fa-gauge-high" style="color: var(--primary);"></i> SPEEDTEST
+            </a>
+            <button type="button" onclick="openUpgradeModal()" class="btn btn-secondary" style="font-size: 12px; padding: 12px 6px;">
+                <i class="fas fa-arrow-up-right-dots" style="color: var(--accent);"></i> UPGRADE / DOWNGRADE
+            </button>
+        </div>
+
+        <!-- Riwayat Pembayaran + Unduh PDF Asli -->
+        <div class="card" id="paymentCard">
+            <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 12px;"><i class="fas fa-clock-rotate-left"></i> Riwayat Pembayaran</h3>
+            <div id="paymentHistoryList">
+                <p style="font-size: 12px; color: var(--text-muted); text-align: center; padding: 10px;">Tidak ada riwayat pembayaran.</p>
+            </div>
+        </div>
+
+        <!-- 3. MENU BARU: 📨 RIWAYAT PESAN (THREADED INBOX / OUTBOX PELANGGAN) -->
+        <div class="card" id="messageCard">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="font-size: 14px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-envelope-open-text" style="color: var(--primary);"></i> 📨 Riwayat Pesan
+                </h3>
+                <span id="unreadReplyBadge" style="display: none; background: rgba(239, 68, 68, 0.18); color: var(--red); border: 1px solid rgba(239, 68, 68, 0.35); font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px;">
+                    🔴 1 Balasan Baru
+                </span>
+            </div>
+            <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 14px;">
+                Pantau seluruh laporan kendala dan permintaan yang Anda kirim beserta tanggapan resmi dari Admin RB Home.
+            </p>
+            <div id="messageHistoryContainer">
+                <p style="font-size: 12px; color: var(--text-muted); text-align: center; padding: 12px;">Belum ada riwayat pesan.</p>
+            </div>
+        </div>
+
+        <!-- Helpdesk / Lapor Gangguan -->
+        <div class="card" id="helpCard">
+            <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 6px;"><i class="fas fa-headset"></i> Lapor Gangguan ke Admin</h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">Laporan kendala akan langsung dikirimkan ke sistem antrean Billing Owner/Admin secara realtime.</p>
+
+            <form id="ticketReportForm" onsubmit="handleSendTicket(event)">
+                <div class="input-group">
+                    <label>Kategori Masalah</label>
+                    <div class="input-box">
+                        <select id="ticketCategory" required style="padding-left: 14px;">
+                            <option value="Internet Lambat / Putus-Putus">Internet Lambat / Putus-Putus</option>
+                            <option value="Internet Mati Total (LOS Merah)">Internet Mati Total (LOS Merah)</option>
+                            <option value="Perangkat / Wi-Fi Bermasalah">Perangkat / Wi-Fi Bermasalah</option>
+                            <option value="Konfirmasi Pembayaran">Konfirmasi Pembayaran Tagihan</option>
+                            <option value="Lainnya">Kendala Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Keterangan Masalah</label>
+                    <div class="input-box">
+                        <textarea id="ticketNote" placeholder="Tuliskan kendala Anda secara jelas..." required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" id="btnSubmitTicket" class="btn btn-primary" style="font-size: 13px;">
+                    <i class="fas fa-paper-plane"></i> KIRIM LAPORAN KE ADMIN
+                </button>
+            </form>
+
+            <div id="ticketSentNotice" style="display:none; margin-top:14px; padding:12px; background:rgba(16,185,129,0.15); border:1px solid var(--green); border-radius:12px; text-align:center;">
+                <b style="color:var(--green); font-size:12px;"><i class="fas fa-circle-check"></i> Laporan Terkirim ke Billing!</b>
+                <p style="font-size:11px; color:var(--text); margin:4px 0 0;">Laporan gangguan Anda sudah masuk ke sistem Billing Admin untuk penanganan teknisi.</p>
+            </div>
+        </div>
+        <nav id="portalBottomNav" class="portal-bottom-nav" aria-label="Navigasi utama">
+            <button type="button" class="portal-nav-item active" data-tab="home" onclick="portalGo('home')"><i class="fas fa-house"></i><span>Beranda</span></button>
+            <button type="button" class="portal-nav-item" data-tab="transactions" onclick="portalGo('transactions')"><i class="fas fa-receipt"></i><span>Transaksi</span></button>
+            <button type="button" class="portal-nav-item" data-tab="package" onclick="portalGo('package')"><i class="fas fa-box"></i><span>Paket</span></button>
+            <button type="button" class="portal-nav-item" data-tab="help" onclick="portalGo('help')"><i class="fas fa-comments"></i><span>Bantuan</span><span id="portalLiveChatNavBadge" class="portal-livechat-nav-badge" style="display:none;">0</span></button>
+            <button type="button" class="portal-nav-item" data-tab="account" onclick="portalGo('account')"><i class="fas fa-user-circle"></i><span>Akun</span></button>
+        </nav>
+    </div>
+
+</div>
+
+<!-- Kontainer Rendering Dokumen PDF Tersembunyi (A4 Presisi Bebas Cut-off) -->
+<div id="pdfRenderContainer"></div>
+
+<script>
+// KONFIGURASI ENDPOINT & STORAGE BILLING CLOUD
+const CLOUD_URL = 'https://script.google.com/macros/s/AKfycbz_JKUPdbCJX1c8TR9ZyGWQ5BT9OyLOuUpxwgUxOuCPHtoHTfAsEBIbE9-zgjlU9KQTUA/exec';
+// AI gateway: API key tidak pernah disimpan di HTML/browser.
+// Portal hanya memanggil AI Hub server-side.
+const AI_GATEWAY_URL = 'https://rb-home-ai-hub.rbhomenet-pkl.workers.dev/v1/ai';
+const PORTAL_THEME_KEY = 'rbhome_portal_theme';
+const DEFAULT_LOGO = 'https://files.catbox.moe/hks861.png';
+const monthNamesIndo = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+const PPPOE_STATUS_API_URL = 'https://script.google.com/macros/s/AKfycbxTtK7j-udV38LRaLHIKWoiTqzNinbhQIaIsXP_7xdopQqMg2vyA92H3LueAByLocO1/exec';
+const PPPOE_STATUS_TOKEN = 'RBH-PKL-7K9M-X4Q2-82NZ-6FWA';
+
+function getGreetingByHour(hour = new Date().getHours()) {
+    if (hour >= 5 && hour < 11) return 'Selamat Pagi,';
+    if (hour >= 11 && hour < 15) return 'Selamat Siang,';
+    if (hour >= 15 && hour < 18) return 'Selamat Sore,';
+    return 'Selamat Malam,';
+}
+
+function applyPortalGreeting() {
+    const el = document.getElementById('greetingText');
+    if (el) el.innerText = getGreetingByHour();
+}
+
+function formatIndoFullDate(value) {
+    if (!value) return '-';
+    const raw = String(value).trim();
+    if (!raw) return '-';
+
+    // Utamakan format tanggal ISO agar tidak bergeser karena timezone.
+    const iso = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    if (iso) {
+        const y = Number(iso[1]);
+        const m = Number(iso[2]);
+        const d = Number(iso[3]);
+        if (m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+            return `${d}-${monthNamesIndo[m - 1].toLowerCase()}-${y}`;
+        }
+    }
+
+    const dmy = raw.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+    if (dmy) {
+        const d = Number(dmy[1]);
+        const m = Number(dmy[2]);
+        const y = Number(dmy[3]);
+        if (m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+            return `${d}-${monthNamesIndo[m - 1].toLowerCase()}-${y}`;
+        }
+    }
+
+    return raw;
+}
+
+let activeDatabase = null;
+let currentCustomerData = null;
+let selectedTargetPackage = null;
+let activeCurrentBillInfo = null;
+let pppoeStatusRequest = null;
+
+// === HELPERS KONTRAK THREAD MESSAGING (sama dengan Notification Manager) ===
+function isAdminReplyMsg(n) {
+    return !!n && n.source === 'ADMIN_TO_PORTAL' && n.messageType === 'admin_reply';
+}
+
+function getThreadIdMsg(n) {
+    if (!n) return '';
+    if (n.threadId) return String(n.threadId);
+    // Fallback aman untuk data lama tanpa threadId: ID pesan starter menjadi threadId
+    return String(n.id);
+}
+
+// ==========================================
+// 1. TEMA (DARK / LIGHT MODE PREFERENCE)
+// ==========================================
+function initPortalTheme() {
+    const saved = localStorage.getItem(PORTAL_THEME_KEY);
+    // Default SahabatRB selalu Light. Dark hanya dipakai jika pelanggan
+    // memang pernah memilihnya sendiri.
+    const theme = saved === 'dark' ? 'dark' : 'light';
+    applyPortalTheme(theme);
+}
+
+function togglePortalTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyPortalTheme(next);
+    localStorage.setItem(PORTAL_THEME_KEY, next);
+    showToast(`Mode tema: ${next === 'dark' ? 'Dark Mode' : 'Light Mode'}`);
+}
+
+function applyPortalTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = document.getElementById('themeToggleIcon');
+    if (icon) {
+        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+}
+
+// ==========================================
+// 2. KEAMANAN SANITASI HTML
+// ==========================================
+function sanitizeHTML(str) {
+    if (!str) return '';
+    try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(str, 'text/html');
+        const dangerousElements = doc.querySelectorAll('script, iframe, object, embed, applet, link, style, form, input, button');
+        dangerousElements.forEach(el => el.remove());
+
+        const allElements = doc.body.querySelectorAll('*');
+        allElements.forEach(el => {
+            Array.from(el.attributes).forEach(attr => {
+                const name = attr.name.toLowerCase();
+                const val = attr.value.toLowerCase().replace(/\s+/g, '');
+                if (name.startsWith('on') || val.includes('javascript:') || (name === 'href' && val.includes('data:text/html'))) {
+                    el.removeAttribute(attr.name);
+                }
+            });
+        });
+        return doc.body.innerHTML;
+    } catch (e) {
+        return String(str)
+            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+            .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+            .replace(/on\w+\s*=\s*(['"]).*?\1/gi, '')
+            .replace(/javascript:/gi, '');
+    }
+}
+
+function escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function showToast(msg) {
+    const el = document.getElementById('toast');
+    if (!el) return;
+    el.innerText = msg;
+    el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 3000);
+}
+
+function normalizePhone(input) {
+    let d = String(input || '').replace(/\D/g, '');
+    if (d.startsWith('620')) d = '62' + d.slice(3);
+    if (d.startsWith('0')) d = '62' + d.slice(1);
+    if (d.startsWith('8')) d = '62' + d;
+    d = d.replace(/^620+/, '62');
+    return d;
+}
+
+function rupiah(num) {
+    return 'Rp ' + new Intl.NumberFormat('id-ID').format(num || 0);
+}
+
+function formatIndoMonth(isoMonth) {
+    if (!isoMonth) return '-';
+    const parts = String(isoMonth).split('-');
+    if (parts.length < 2) return isoMonth;
+    const m = parseInt(parts[1], 10);
+    if (isNaN(m) || m < 1 || m > 12) return isoMonth;
+    return monthNamesIndo[m - 1] + ' ' + parts[0];
+}
+
+function syncBranding(settings) {
+    if (!settings) return;
+    const logoUrl = settings.logo || DEFAULT_LOGO;
+    ['loginLogo'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.src = logoUrl;
+    });
+
+    if (settings.brandName) {
+        ['loginBrandTitle'].forEach(id => {
+            const titleEl = document.getElementById(id);
+            if (titleEl) {
+                const parts = settings.brandName.split(/\s+/);
+                if (parts.length > 1) {
+                    const last = parts.pop();
+                    titleEl.innerHTML = parts.join(' ') + ' <span>' + last + '</span>';
+                } else {
+                    titleEl.innerHTML = '<span>' + settings.brandName + '</span>';
+                }
+            }
+        });
+    }
+}
+
+// Rumus Finansial Identik Billing v42 (invMath & invoicePaid)
+function calculateInvoiceFinancials(inv, payments) {
+    const subtotal = Number(inv.amount) || 0;
+    const discount = Number(inv.discount) || 0;
+    const nett = Math.max(0, subtotal - discount);
+    const includePpn = inv.ppnInclude !== false;
+    const ppn = includePpn ? 0 : Math.round(nett * 0.11);
+    const total = nett + ppn;
+
+    const paid = (payments || [])
+        .filter(p => p && p.invoiceId === inv.id)
+        .reduce((sum, p) => sum + (Number(p.amount) || 0), 0);
+
+    const sisa = Math.max(0, total - paid);
+    const isLunas = sisa <= 0;
+
+    return { subtotal, discount, nett, includePpn, ppn, total, paid, sisa, isLunas };
+}
+
+function calculateCurrentBill(invoices, payments) {
+    if (!Array.isArray(invoices) || !invoices.length) return null;
+
+    const unpaidList = [];
+    invoices.forEach(inv => {
+        if (!inv) return;
+        const status = String(inv.status || '');
+        const isUnpaid = status.includes('Belum Bayar') || status.includes('Belum Lunas') || status.includes('Sekali Bayar');
+        if (!isUnpaid) return;
+
+        const fin = calculateInvoiceFinancials(inv, payments);
+        if (fin.sisa > 0) {
+            unpaidList.push({
+                invoice: inv,
+                ...fin
+            });
+        }
+    });
+
+    if (!unpaidList.length) return null;
+
+    unpaidList.sort((a, b) => String(a.invoice.dueDate || a.invoice.month || '9999').localeCompare(String(b.invoice.dueDate || b.invoice.month || '9999')));
+
+    const totalOutstanding = unpaidList.reduce((sum, item) => sum + item.sisa, 0);
+    const primary = unpaidList[0];
+
+    return {
+        primary: primary,
+        totalOutstanding: totalOutstanding,
+        unpaidCount: unpaidList.length,
+        allUnpaid: unpaidList
+    };
+}
+
+function resolvePackageSpeed(customerPkgName, packagesList) {
+    if (!customerPkgName) return 'Standard Broadband';
+    const cleanPkg = String(customerPkgName).trim().toLowerCase();
+
+    const found = (packagesList || []).find(p => {
+        if (!p || !p.name) return false;
+        const pName = p.name.trim().toLowerCase();
+        return pName === cleanPkg || cleanPkg.includes(pName) || pName.includes(cleanPkg);
+    });
+
+    if (found && found.speed) return found.speed;
+
+    const speedMatch = customerPkgName.match(/\d+\s*Mbps/i);
+    if (speedMatch) return speedMatch[0];
+
+    return 'Broadband Aktif';
+}
+
+// ============================================================================
+// PORTAL DATA LAYER — KOMPATIBEL DENGAN CLOUD LAMA (Code.gs TIDAK DIUBAH)
+// ============================================================================
+// Cloud lama hanya menyediakan GET seluruh billing_db dan POST seluruh billing_db.
+// Karena kontrak Cloud tidak boleh diubah, Portal mengoptimalkan DI SISI CLIENT:
+// - tidak mengambil DB saat halaman pertama dibuka;
+// - satu request GET per login/refresh;
+// - refresh tidak boleh overlap;
+// - request saat tab tidak aktif / modal penting terbuka dilewati;
+// - write dibuat serial per-tab agar dua submit Portal tidak saling menimpa;
+// - setiap write penting diverifikasi dengan GET setelah POST;
+// - tidak ada trimming log / auto-delete.
+let portalApiPromise = null;
+let portalWriteQueue = Promise.resolve();
+const PORTAL_API_TIMEOUT_MS = 15000;
+const PORTAL_POLL_INTERVAL_MS = 30000;
+
+function makePortalRequestId(prefix = 'portal') {
+    return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+async function fetchLegacyCloudDatabase() {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), PORTAL_API_TIMEOUT_MS);
+    try {
+        const res = await fetch(CLOUD_URL + '?t=' + Date.now(), {
+            method: 'GET',
+            cache: 'no-store',
+            signal: controller.signal
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const db = await res.json();
+        if (!db || typeof db !== 'object' || Array.isArray(db)) {
+            throw new Error('Format billing_db tidak valid.');
+        }
+        return db;
+    } finally {
+        clearTimeout(timeoutId);
+    }
+}
+
+function buildCustomerPortalSnapshot(db, cleanPhone) {
+    const customers = Array.isArray(db.customers) ? db.customers : [];
+    const customer = customers.find(c => c && normalizePhone(c.phone) === cleanPhone);
+    if (!customer) return null;
+
+    const customerId = String(customer.id || '').trim();
+    const invoices = (Array.isArray(db.invoices) ? db.invoices : [])
+        .filter(inv => inv && String(inv.customerId || '').trim() === customerId);
+
+    const invoiceIds = new Set(invoices.map(inv => String(inv.id)));
+    const payments = (Array.isArray(db.payments) ? db.payments : [])
+        .filter(pay => pay && (
+            String(pay.customerId || '').trim() === customerId ||
+            invoiceIds.has(String(pay.invoiceId || ''))
+        ));
+
+    const allNotifications = Array.isArray(db.notifications) ? db.notifications : [];
+    const tombstones = Array.isArray(db.tombstones) ? db.tombstones : [];
+    const deletedIds = new Set(tombstones.filter(t => t && (t.type === 'notifications' || !t.type)).map(t => String(t.id)));
+    const relevantNotifications = allNotifications.filter(n => {
+        if (!n || deletedIds.has(String(n?.id))) return false;
+        const cid = String(n.customerId || n.targetCustomer || '').trim();
+        const phone = normalizePhone(n.phone || '');
+        const isBroadcast = n.target === 'all' || n.targetCustomer === 'all' || n.customerId === 'all';
+        return isBroadcast || cid === customerId || (phone && phone === cleanPhone);
+    });
+
+    return {
+        customer,
+        invoices,
+        payments,
+        notifications: relevantNotifications,
+        targetedNotices: relevantNotifications,
+        packages: Array.isArray(db.packages) ? db.packages : [],
+        settings: db.settings || {},
+        updatedAt: db.updatedAt || null
+    };
+}
+
+async function fetchPortalCustomerData(phone, { silent = false } = {}) {
+    const cleanPhone = normalizePhone(phone);
+    if (!cleanPhone) return null;
+    if (portalApiPromise) return portalApiPromise;
+
+    const banner = document.getElementById('cloudLoadingBanner');
+    if (banner && currentCustomerData && !silent) banner.style.display = 'block';
+
+    portalApiPromise = (async () => {
+        try {
+            // Penting: Code.gs lama memang mengembalikan billing_db penuh.
+            // Filtering dilakukan segera di browser agar fungsi Portal tetap ringan.
+            const db = await fetchLegacyCloudDatabase();
+            const snapshot = buildCustomerPortalSnapshot(db, cleanPhone);
+            if (!snapshot) return null;
+
+            // Simpan hanya snapshot pelanggan di RAM. DB penuh tetap hidup hanya
+            // selama proses fetch/write yang memang membutuhkannya. Ini mencegah
+            // Portal menahan billing_db besar di memori dan memindai seluruh
+            // notifications pada setiap render.
+            activeDatabase = snapshot;
+            if (!Array.isArray(activeDatabase.notifications)) activeDatabase.notifications = [];
+            if (!Array.isArray(activeDatabase.invoices)) activeDatabase.invoices = [];
+            if (!Array.isArray(activeDatabase.payments)) activeDatabase.payments = [];
+            if (!Array.isArray(activeDatabase.packages)) activeDatabase.packages = [];
+            if (!activeDatabase.settings) activeDatabase.settings = {};
+
+            syncBranding(activeDatabase.settings);
+            return snapshot;
+        } catch (err) {
+            console.warn('Gagal memuat data portal pelanggan:', err);
+            return null;
+        } finally {
+            if (banner) banner.style.display = 'none';
+            portalApiPromise = null;
+        }
+    })();
+
+    return portalApiPromise;
+}
+
+function enqueuePortalWrite(mutator) {
+    const job = portalWriteQueue.then(async () => {
+        const db = await fetchLegacyCloudDatabase();
+        const result = await mutator(db);
+        if (!result) throw new Error('Perubahan Portal dibatalkan.');
+
+        db.updatedAt = Date.now();
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), PORTAL_API_TIMEOUT_MS);
+        try {
+            // Pertahankan kontrak Code.gs lama: POST = seluruh billing_db.
+            await fetch(CLOUD_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                cache: 'no-store',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(db),
+                signal: controller.signal
+            });
+        } finally {
+            clearTimeout(timeoutId);
+        }
+        return result;
+    });
+
+    // Job berikutnya tetap bisa jalan walau job ini gagal.
+    portalWriteQueue = job.catch(() => null);
+    return job;
+}
+
+async function persistPortalMutation(mutator) {
+    try {
+        return await enqueuePortalWrite(mutator);
+    } catch (err) {
+        console.warn('Gagal menyimpan perubahan Portal:', err);
+        return null;
+    }
+}
+
+// LOGIN LOG: tidak lagi menulis seluruh billing_db setiap login.
+// Code.gs lama tidak punya endpoint log khusus. Menghilangkan write otomatis ini
+// mencegah login pelanggan berpotensi menimpa perubahan Admin yang terjadi bersamaan.
+function logCustomerLoginSuccess(customer, loginMethod = 'WhatsApp') {
+    console.info('Login Portal berhasil:', customer?.id || '-', loginMethod);
+}
+
+// ==========================================
+// AI ASSISTANT KONTEKSTUAL
+// ==========================================
+let aiRequestController = null;
+let aiRequestSeq = 0;
+let aiNotificationFingerprint = '';
+let aiStatusFingerprint = '';
+
+function getPortalAIContext(action, extra = {}) {
+    const normalizedAction = String(action || 'general');
+    const explicitPrompt = typeof extra?.prompt === 'string'
+        ? extra.prompt.trim()
+        : '';
+
+    const c = currentCustomerData?.customer || {};
+    const bill = activeCurrentBillInfo || null;
+
+    // Data pembayaran sudah customer-scoped oleh endpoint Portal.
+    // Kirim hanya field yang relevan untuk AI.
+    const payments = Array.isArray(currentCustomerData?.payments)
+        ? currentCustomerData.payments.slice().reverse().slice(0, 20).map(p => ({
+            id: p?.id || '',
+            date: p?.date || '',
+            amount: Number(p?.amount || 0),
+            invoiceId: p?.invoiceId || '',
+            method: p?.method || '',
+            packagePrice: Number(p?.packagePrice || 0),
+            discount: Number(p?.discount || 0),
+            ppnInclude: p?.ppnInclude !== false
+        }))
+        : [];
+
+    // Notifikasi targeted juga sudah customer-scoped oleh Portal.
+    // Selalu tersedia agar pertanyaan natural seperti "Ada notifikasi saya?"
+    // tidak harus memakai action khusus.
+    const relevantNotifications =
+        Array.isArray(currentCustomerData?.targetedNotices)
+            ? currentCustomerData.targetedNotices.slice(0, 10).map(n => ({
+                id: n?.id || '',
+                title: n?.title || '',
+                msg: n?.msg || '',
+                time: n?.time || '',
+                source: n?.source || '',
+                category: n?.category || '',
+                messageType: n?.messageType || '',
+                read: !!n?.read,
+                requestType: n?.requestType || '',
+                targetPackage: n?.targetPackage || '',
+                targetSpeed: n?.targetSpeed || '',
+                targetPrice: Number(n?.targetPrice || 0),
+                threadId: n?.threadId || ''
+            }))
+            : [];
+
+    return {
+        app: 'portal',
+        action: normalizedAction,
+        ...(explicitPrompt ? { prompt: explicitPrompt } : {}),
+
+        customer: {
+            id: c.id || '',
+            name: c.name || '',
+            phone: c.phone || '',
+            package: c.package || '',
+            speed: c.speed || '',
+            status: c.status || ''
+        },
+
+        bill: bill ? {
+            invoiceId: bill.primary?.invoice?.id || '',
+            total: Number(bill.totalOutstanding || 0),
+            status: bill.totalOutstanding > 0 ? 'BELUM_LUNAS' : 'LUNAS',
+            dueDate: bill.primary?.invoice?.dueDate || ''
+        } : null,
+
+        payments,
+        notifications: relevantNotifications,
+
+        extra: extra || {}
+    };
+}
+
+function showPortalAI(text, status = 'Selesai', source = '') {
+    const card = document.getElementById('aiAssistantCard');
+    const body = document.getElementById('aiAssistantBody');
+    const statusEl = document.getElementById('aiAssistantStatus');
+    const sourceEl = document.getElementById('aiAssistantSource');
+    if (!card || !body || !statusEl || !sourceEl) return;
+    card.style.display = 'block';
+    body.classList.remove('loading');
+    body.innerText = text || 'Tidak ada hasil AI.';
+    statusEl.innerText = status;
+    sourceEl.innerText = source ? `Konteks: ${source}` : '';
+}
+
+function openAIAskModal() {
+    if (!currentCustomerData?.customer) return;
+
+    const modal = document.getElementById('aiAskModal');
+    const input = document.getElementById('aiAskInput');
+    const fab = document.getElementById('aiFloatingBtn');
+
+    if (!modal || !input) return;
+
+    if (fab) fab.style.display = 'none';
+
+    modal.style.display = 'flex';
+    input.value = '';
+
+    setTimeout(() => {
+        input.focus();
+        scrollAIAskHistory();
+    }, 50);
+}
+
+function closeAIAskModal() {
+    const modal = document.getElementById('aiAskModal');
+    const btn = document.getElementById('aiAskSendBtn');
+
+    if (modal) modal.style.display = 'none';
+
+    if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pertanyaan';
+    }
+
+    setupAIAskKeyboard();
+    syncAIFloatingButton();
+}
+
+async function submitAIAsk() {
+    const input = document.getElementById('aiAskInput');
+    const btn = document.getElementById('aiAskSendBtn');
+    const modal = document.getElementById('aiAskModal');
+    const fab = document.getElementById('aiFloatingBtn');
+    const history = document.getElementById('aiAskChatHistory');
+
+    if (!input || !btn || !history) return;
+
+    const question = input.value.trim();
+    if (!question) {
+        input.focus();
+        return;
+    }
+
+    appendAIAskBubble('user', question);
+    input.value = '';
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menganalisis...';
+
+    const loadingBubble = appendAIAskBubble('ai', 'Sedang menganalisis konteks Anda...', true);
+    if (modal) modal.style.display = 'flex';
+    if (fab) fab.style.display = 'none';
+    scrollAIAskHistory();
+
+    try {
+        const answer = await requestAIAsk(question);
+        if (loadingBubble) loadingBubble.remove();
+        appendAIAskBubble('ai', answer || 'AI tidak mengembalikan jawaban.');
+    } catch (err) {
+        if (loadingBubble) loadingBubble.remove();
+        console.warn('AI Ask gagal:', err);
+        appendAIAskBubble('ai', 'Asisten AI sedang tidak tersedia. Data dan fungsi Portal tetap dapat digunakan seperti biasa.');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pertanyaan';
+        scrollAIAskHistory();
+        input.focus();
+    }
+}
+
+function appendAIAskBubble(role, text, loading = false) {
+    const history = document.getElementById('aiAskChatHistory');
+    if (!history) return null;
+    const bubble = document.createElement('div');
+    bubble.className = `ai-ask-bubble ${role}${loading ? ' loading' : ''}`;
+    const label = document.createElement('span');
+    label.className = 'ai-ask-bubble-label';
+    label.innerText = role === 'user' ? 'Anda' : 'Asisten AI SahabatRB';
+    const content = document.createElement('span');
+    content.innerText = text || '';
+    bubble.append(label, content);
+    history.appendChild(bubble);
+    scrollAIAskHistory();
+    return bubble;
+}
+
+function scrollAIAskHistory() {
+    const history = document.getElementById('aiAskChatHistory');
+    if (!history) return;
+    history.scrollTop = history.scrollHeight;
+}
+
+async function requestAIAsk(question) {
+    if (!currentCustomerData?.customer) throw new Error('Pelanggan belum login.');
+    if (!AI_GATEWAY_URL) throw new Error('AI gateway belum aktif.');
+
+    const payload = getPortalAIContext('general', {
+        prompt: question,
+        source: 'floating_ask'
+    });
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000);
+    try {
+        const res = await fetch(AI_GATEWAY_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: controller.signal,
+            cache: 'no-store'
+        });
+        if (!res.ok) throw new Error(`AI gateway HTTP ${res.status}`);
+        const data = await res.json();
+        return data.answer || data.message || 'AI tidak mengembalikan jawaban.';
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
+
+function setupAIFloatingDrag() {
+    const btn = document.getElementById('aiFloatingBtn');
+    if (!btn || btn.dataset.dragReady === '1') return;
+    btn.dataset.dragReady = '1';
+
+    let dragging = false, moved = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
+    const saved = localStorage.getItem('rbhome_ai_fab_position');
+
+    function applySavedPosition() {
+        if (!saved) return;
+        try {
+            const pos = JSON.parse(saved);
+            if (Number.isFinite(pos.left) && Number.isFinite(pos.top)) {
+                const maxLeft = Math.max(0, window.innerWidth - btn.offsetWidth - 8);
+                const maxTop = Math.max(0, window.innerHeight - btn.offsetHeight - 8);
+                btn.style.left = Math.min(Math.max(8, pos.left), maxLeft) + 'px';
+                btn.style.top = Math.min(Math.max(8, pos.top), maxTop) + 'px';
+                btn.style.right = 'auto'; btn.style.bottom = 'auto';
+            }
+        } catch (_) {}
+    }
+
+    const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+    const move = (event) => {
+        if (!dragging) return;
+        const dx = event.clientX - startX, dy = event.clientY - startY;
+        if (Math.abs(dx) + Math.abs(dy) > 5) moved = true;
+        const left = clamp(startLeft + dx, 8, Math.max(8, window.innerWidth - btn.offsetWidth - 8));
+        const top = clamp(startTop + dy, 8, Math.max(8, window.innerHeight - btn.offsetHeight - 8));
+        btn.style.left = left + 'px'; btn.style.top = top + 'px';
+        btn.style.right = 'auto'; btn.style.bottom = 'auto';
+    };
+    const end = () => {
+        if (!dragging) return;
+        dragging = false;
+        btn.classList.remove('ai-dragging');
+        if (moved) {
+            localStorage.setItem('rbhome_ai_fab_position', JSON.stringify({ left: btn.offsetLeft, top: btn.offsetTop }));
+            btn.dataset.suppressClick = '1';
+            setTimeout(() => { btn.dataset.suppressClick = '0'; }, 120);
+        }
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', end);
+    };
+
+    btn.addEventListener('pointerdown', (event) => {
+        if (event.button !== undefined && event.button !== 0) return;
+        const rect = btn.getBoundingClientRect();
+        dragging = true; moved = false; startX = event.clientX; startY = event.clientY; startLeft = rect.left; startTop = rect.top;
+        btn.classList.add('ai-dragging');
+        try { btn.setPointerCapture(event.pointerId); } catch (_) {}
+        window.addEventListener('pointermove', move);
+        window.addEventListener('pointerup', end, { once: false });
+    });
+    btn.addEventListener('click', (event) => {
+        if (btn.dataset.suppressClick === '1') { event.preventDefault(); event.stopImmediatePropagation(); }
+    }, true);
+    window.addEventListener('resize', () => {
+        if (btn.style.left) {
+            const left = clamp(parseFloat(btn.style.left) || 8, 8, Math.max(8, window.innerWidth - btn.offsetWidth - 8));
+            const top = clamp(parseFloat(btn.style.top) || 8, 8, Math.max(8, window.innerHeight - btn.offsetHeight - 8));
+            btn.style.left = left + 'px'; btn.style.top = top + 'px';
+        }
+    });
+    setTimeout(applySavedPosition, 0);
+}
+
+function setupAIAskKeyboard() {
+    const input = document.getElementById('aiAskInput');
+    if (!input || input.dataset.aiKeyboardReady === '1') return;
+
+    input.dataset.aiKeyboardReady = '1';
+
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            submitAIAsk();
+        }
+    });
+}
+
+function syncAIFloatingButton() {
+    const btn = document.getElementById('aiFloatingBtn');
+    if (!btn) return;
+    setupAIFloatingDrag();
+    btn.style.display = currentCustomerData?.customer ? 'flex' : 'none';
+}
+
+async function triggerPortalAI(action, extra = {}) {
+    const card = document.getElementById('aiAssistantCard');
+    const body = document.getElementById('aiAssistantBody');
+    const statusEl = document.getElementById('aiAssistantStatus');
+    const sourceEl = document.getElementById('aiAssistantSource');
+    if (!card || !body || !statusEl || !sourceEl) return;
+    if (!currentCustomerData?.customer) return;
+
+    // Belum ada gateway = jangan membuat request palsu / mengganggu fungsi Portal.
+    if (!AI_GATEWAY_URL) {
+        showPortalAI('AI belum tersedia. Portal tetap berjalan normal; analisis akan muncul otomatis dari menu yang dipicu setelah gateway aktif.', 'Belum aktif', action);
+        return;
+    }
+
+    const seq = ++aiRequestSeq;
+    if (aiRequestController) aiRequestController.abort();
+    aiRequestController = new AbortController();
+
+    card.style.display = 'block';
+    body.classList.add('loading');
+    body.innerText = 'Sedang menganalisis konteks menu...';
+    statusEl.innerText = 'Memproses';
+    sourceEl.innerText = `Konteks: ${action}`;
+
+    try {
+        const payload = getPortalAIContext(action, extra);
+        const res = await fetch(AI_GATEWAY_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: aiRequestController.signal,
+            cache: 'no-store'
+        });
+        if (!res.ok) throw new Error(`AI gateway HTTP ${res.status}`);
+        const data = await res.json();
+        if (seq !== aiRequestSeq) return;
+        showPortalAI(data.answer || data.message || 'AI tidak mengembalikan jawaban.', 'Selesai', action);
+    } catch (err) {
+        if (err?.name === 'AbortError') return;
+        console.warn('AI assistant gagal:', err);
+        showPortalAI('Asisten AI sedang tidak tersedia. Data dan fungsi Portal tetap dapat digunakan seperti biasa.', 'Tidak tersedia', action);
+    } finally {
+        if (seq === aiRequestSeq) aiRequestController = null;
+    }
+}
+
+// Handler Form Login WhatsApp (Alur B)
+async function handlePortalLogin(e) {
+    if (e) e.preventDefault();
+    const rawInput = document.getElementById('inputPhone').value.trim();
+    const cleanPhone = normalizePhone(rawInput);
+
+    if (!cleanPhone || cleanPhone.length < 9) {
+        alert('Masukkan nomor WhatsApp yang valid.');
+        return;
+    }
+
+    const btn = document.getElementById('btnSubmitLogin');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> MEMERIKSA DATA...';
+
+    const customer = await executeLoginWithPhone(cleanPhone, false);
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-right-to-bracket"></i> MASUK KE PORTAL';
+
+    if (customer) {
+        logCustomerLoginSuccess(customer, 'WhatsApp');
+    } else {
+        alert('Nomor WhatsApp tidak terdaftar di sistem RB Home.');
+    }
+}
+
+// ===== PPPoE STATUS — STANDALONE STATUS CHECK =====
+function renderPppoeStatus(status, updatedAt) {
+    const badge = document.getElementById('pppoeStatusBadge');
+    const description = document.getElementById('pppoeStatusDescription');
+    const updatedRow = document.getElementById('pppoeUpdatedAt');
+    const updatedTime = document.getElementById('pppoeUpdatedAtTime');
+    if (!badge || !description) return;
+
+    const normalizedStatus = String(status || '').trim().toUpperCase();
+
+    let label = '⚪ STATUS BELUM TERSEDIA';
+    let detail = 'Status perangkat belum dapat diperiksa. Coba perbarui kembali.';
+    let stateClass = 'unavailable';
+
+    if (normalizedStatus === 'ONLINE') {
+        label = '🟢 TERHUBUNG';
+        detail = 'Perangkat internet Anda terdeteksi aktif.';
+        stateClass = 'online';
+    } else if (normalizedStatus === 'OFFLINE') {
+        label = '🔴 TIDAK TERHUBUNG';
+        detail = 'Perangkat internet Anda tidak terdeteksi aktif.';
+        stateClass = 'offline';
+    }
+
+    badge.className = `pppoe-status-badge ${stateClass}`;
+    badge.innerText = label;
+    description.innerText = detail;
+
+    const timestamp = Number(updatedAt);
+    if (updatedRow && updatedTime) {
+        if (Number.isFinite(timestamp) && timestamp > 0) {
+            const date = new Date(timestamp);
+            if (!Number.isNaN(date.getTime())) {
+                updatedTime.innerText = date.toLocaleTimeString('id-ID', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
+                updatedRow.style.display = 'block';
+                return;
+            }
+        }
+        updatedTime.innerText = '';
+        updatedRow.style.display = 'none';
+    }
+}
+
+async function fetchPppoeStatus(customerId) {
+    const button = document.getElementById('pppoeRefreshBtn');
+    const normalizedCustomerId = String(customerId ?? '').trim();
+
+    if (!normalizedCustomerId) {
+        renderPppoeStatus('DATA_TIDAK_TERSEDIA');
+        if (button) {
+            button.disabled = true;
+            button.innerHTML = '↻ PERBARUI STATUS';
+        }
+        return null;
+    }
+
+    if (pppoeStatusRequest) return pppoeStatusRequest;
+
+    if (button) {
+        button.disabled = true;
+        button.innerHTML = '⟳ MEMERIKSA...';
+    }
+
+    const query = new URLSearchParams({
+        action: 'status',
+        token: PPPOE_STATUS_TOKEN,
+        customerId: normalizedCustomerId
+    });
+    const url = `${PPPOE_STATUS_API_URL}?${query.toString()}`;
+
+    pppoeStatusRequest = (async () => {
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                cache: 'no-store'
+            });
+
+            if (!response.ok) throw new Error(`PPPoE API HTTP ${response.status}`);
+
+            const data = await response.json();
+            if (!data || typeof data !== 'object') {
+                throw new Error('PPPoE API response kosong');
+            }
+
+            renderPppoeStatus(data.status, data.updatedAt);
+            return data;
+        } catch (error) {
+            console.warn('PPPoE status tidak tersedia:', error);
+            renderPppoeStatus('DATA_TIDAK_TERSEDIA');
+            return null;
+        } finally {
+            if (button) {
+                button.disabled = false;
+                button.innerHTML = '↻ PERBARUI STATUS';
+            }
+            pppoeStatusRequest = null;
+        }
+    })();
+
+    return pppoeStatusRequest;
+}
+
+// Eksekusi Login & Refresh Data melalui endpoint portal khusus.
+async function executeLoginWithPhone(cleanPhone, isAutoRefresh = false) {
+    const snapshot = await fetchPortalCustomerData(cleanPhone, { silent: isAutoRefresh });
+    if (!snapshot || !snapshot.customer) {
+        if (!isAutoRefresh) {
+            alert('Tidak dapat memuat data pelanggan dari Cloud. Periksa koneksi internet Anda.');
+        }
+        return null;
+    }
+
+    const nextVersion = String(snapshot.updatedAt || '');
+    const prevVersion = String(currentCustomerData?.updatedAt || '');
+    const sameCustomer = currentCustomerData &&
+        String(currentCustomerData.customer?.id || '') === String(snapshot.customer?.id || '');
+
+    // Polling tetap mengambil data terbaru, tetapi DOM tidak disentuh jika versi
+    // cloud belum berubah. Ini menghilangkan render dashboard berulang tiap 30 dtk.
+    if (isAutoRefresh && sameCustomer && nextVersion && nextVersion === prevVersion) {
+        return snapshot.customer;
+    }
+
+    currentCustomerData = {
+        customer: snapshot.customer,
+        invoices: Array.isArray(snapshot.invoices) ? snapshot.invoices : [],
+        payments: Array.isArray(snapshot.payments) ? snapshot.payments : [],
+        packages: Array.isArray(snapshot.packages) ? snapshot.packages : [],
+        settings: snapshot.settings || {},
+        announcement: snapshot.settings?.runningText || '',
+        targetedNotices: Array.isArray(snapshot.targetedNotices) ? snapshot.targetedNotices : [],
+        notifications: Array.isArray(snapshot.notifications) ? snapshot.notifications : [],
+        csPhone: snapshot.settings?.wa || '6281234567890',
+        updatedAt: snapshot.updatedAt || null
+    };
+
+    renderPortalView();
+
+    // PPPoE hanya diperiksa setelah login berhasil; tidak ikut polling session existing.
+    if (!isAutoRefresh) {
+        void fetchPppoeStatus(currentCustomerData?.customer?.id);
+    }
+
+    return snapshot.customer;
+}
+
+// Login portal hanya menggunakan nomor WhatsApp pelanggan yang terdaftar.
+
+
+function setupPortalLayout() {
+    const host = document.getElementById('portalTabHost');
+    if (!host || host.dataset.ready === '1') return;
+    const home = document.getElementById('portalTabHome');
+    const tx = document.getElementById('portalTabTransactions');
+    const pkg = document.getElementById('portalTabPackage');
+    const help = document.getElementById('portalTabHelp');
+    const account = document.getElementById('portalTabAccount');
+    const ai = document.getElementById('aiAssistantCard');
+    const announcement = document.getElementById('boxAnnouncement');
+    const notice = document.getElementById('boxCustomerNotice');
+    const profile = document.getElementById('profileCard');
+    const bill = document.getElementById('billCard');
+    const services = document.getElementById('servicesCard');
+    const quick = document.getElementById('quickActions');
+    const payment = document.getElementById('paymentCard');
+    const message = document.getElementById('messageCard');
+    const ticket = document.getElementById('helpCard');
+    if (!home || !tx || !pkg || !help || !account) return;
+
+    if (!document.getElementById('homeCustomerIdentityCard')) {
+        const identityCard = document.createElement('div');
+        identityCard.id = 'homeCustomerIdentityCard';
+        identityCard.className = 'home-customer-card';
+        identityCard.innerHTML = `
+            <div class="home-customer-head">
+                <div class="home-customer-title"><i class="fas fa-id-card"></i> Informasi Pelanggan</div>
+                <span id="homeCustomerStatus" class="net-badge net-active"><i class="fas fa-circle-check"></i> AKTIF</span>
+            </div>
+            <div class="home-customer-grid">
+                <div class="home-customer-field"><div class="label">ID Pelanggan</div><div class="value" id="homeCustomerId">-</div></div>
+                <div class="home-customer-field"><div class="label">Paket Internet</div><div class="value" id="homeCustomerPackage">-</div></div>
+            </div>
+        `;
+        home.appendChild(identityCard);
+    }
+
+    // PPPoE Status: komponen tambahan terisolasi; tidak mengubah card pelanggan existing.
+    if (!document.getElementById('pppoeStatusCard')) {
+        const pppoeCard = document.createElement('div');
+        pppoeCard.id = 'pppoeStatusCard';
+        pppoeCard.className = 'card pppoe-status-card';
+        pppoeCard.innerHTML = `
+            <div class="pppoe-status-head">
+                <div class="pppoe-modem-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="7" y="15" width="34" height="19" rx="4"></rect>
+                        <path d="M13 22h22"></path>
+                        <path d="M17 27h.01M23 27h.01M29 27h.01"></path>
+                        <path d="M17 35v3M31 35v3M14 38h20"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="pppoe-status-title">STATUS ONT / MODEM</div>
+                    <div class="pppoe-status-subtitle">Status perangkat internet Anda</div>
+                </div>
+            </div>
+
+            <div class="pppoe-status-box" aria-live="polite">
+                <div id="pppoeStatusBadge" class="pppoe-status-badge unavailable">⚪ STATUS BELUM TERSEDIA</div>
+                <div id="pppoeStatusDescription" class="pppoe-status-description">Status perangkat belum dapat diperiksa. Coba perbarui kembali.</div>
+                <div id="pppoeUpdatedAt" class="pppoe-updated-at" style="display:none;">
+                    Data router: <strong id="pppoeUpdatedAtTime"></strong>
+                </div>
+            </div>
+
+            <button type="button"
+                    id="pppoeRefreshBtn"
+                    class="btn btn-secondary pppoe-refresh-btn"
+                    onclick="fetchPppoeStatus(currentCustomerData?.customer?.id)">
+                ↻ PERBARUI STATUS
+            </button>
+        `;
+        home.appendChild(pppoeCard);
+    }
+
+    const hub = document.createElement('div');
+    hub.id = 'notificationHub';
+    hub.className = 'notification-hub';
+    hub.innerHTML = '<div class="notification-hub-head"><div class="notification-hub-title"><i class="fas fa-bell" style="color:var(--primary); margin-right:6px;"></i>Notifikasi</div><span id="notificationHubBadge" class="notification-hub-badge" style="display:none;"><i class="fas fa-circle"></i> Baru</span></div>';
+    if (ai) hub.appendChild(ai);
+    if (notice) hub.appendChild(notice);
+    if (announcement) hub.appendChild(announcement);
+    home.appendChild(hub);
+    if (bill) home.appendChild(bill);
+    if (services) home.appendChild(services);
+
+    if (payment) tx.appendChild(payment);
+    if (bill) {
+        const billSummary = bill.cloneNode(true);
+        billSummary.id = 'billSummaryClone';
+        billSummary.style.display = 'none';
+        // no duplicate live controls; transaction tab keeps payment history as primary content.
+    }
+    if (quick) pkg.appendChild(quick);
+    if (profile) {
+        const packageCard = document.createElement('div');
+        packageCard.className = 'card package-summary-card';
+        packageCard.innerHTML = `
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <i class="fas fa-box" style="color:var(--primary);"></i>
+                <h3 style="font-size:14px;font-weight:800;">Paket Saat Ini</h3>
+            </div>
+            <div class="profile-grid" style="margin-top:0;">
+                <div class="profile-item"><div class="label">Paket Langganan</div><div class="val" id="custPackageTab">-</div></div>
+                <div class="profile-item"><div class="label">Kecepatan</div><div class="val" id="custSpeedTab">-</div></div>
+            </div>
+            <button type="button" class="btn btn-secondary" style="margin-top:12px;" onclick="openUpgradeModal()"><i class="fas fa-arrow-up-right-dots" style="color:var(--accent);"></i> UPGRADE / DOWNGRADE</button>
+        `;
+        pkg.insertBefore(packageCard, quick);
+        account.appendChild(profile);
+    }
+    if (message) help.appendChild(message);
+    if (ticket) help.appendChild(ticket);
+
+    // LIVE CHAT: masuk ke menu Bantuan, hanya tersedia setelah pelanggan login.
+    if (!document.getElementById('rbPortalLiveChatCard')) {
+        const liveChatCard = document.createElement('div');
+        liveChatCard.id = 'rbPortalLiveChatCard';
+        liveChatCard.className = 'card rb-livechat-help-card';
+        liveChatCard.innerHTML = `
+            <div class="rb-livechat-help-head">
+                <div class="rb-livechat-help-icon"><i class="fas fa-comments"></i></div>
+                <div>
+                    <h3>Live Chat RB HOME <span id="rbPortalLiveChatCardBadge" class="portal-livechat-nav-badge" style="display:none;vertical-align:middle;margin-left:6px;">0</span></h3>
+                    <p>Butuh bantuan langsung? Hubungi Admin / Customer Service.</p>
+                </div>
+            </div>
+            <div class="rb-livechat-help-status">
+                <span class="rb-livechat-help-dot"></span>
+                <span>Chat dengan Admin / CS</span>
+            </div>
+            <button type="button" class="btn btn-primary rb-livechat-help-btn" onclick="openRBPortalLiveChat()">
+                <i class="fas fa-headset"></i> Mulai Live Chat
+            </button>
+        `;
+        help.appendChild(liveChatCard);
+    }
+
+    host.dataset.ready = '1';
+    portalGo('home');
+}
+
+function portalGo(tab) {
+    const host = document.getElementById('portalTabHost');
+    if (!host) return;
+    document.querySelectorAll('.portal-tab').forEach(el => el.classList.toggle('is-active', el.dataset.tab === tab));
+    document.querySelectorAll('.portal-nav-item').forEach(el => el.classList.toggle('active', el.dataset.tab === tab));
+    if (tab === 'transactions') renderPaymentHistory();
+    if (tab === 'help') { renderMessageHistory(); updatePortalLiveChatBadge(); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAllServices() {
+    const more = document.getElementById('servicesMore');
+    const label = document.getElementById('servicesAllLabel');
+    if (!more || !label) return;
+    const open = more.classList.toggle('open');
+    more.setAttribute('aria-hidden', open ? 'false' : 'true');
+    label.innerText = open ? 'Tutup Menu' : 'Lihat Semua';
+}
+
+// Render Dashboard
+function renderPortalView() {
+    if (!currentCustomerData || !currentCustomerData.customer) {
+        syncAIFloatingButton();
+        return;
+    }
+
+    setupPortalLayout();
+    syncAIFloatingButton();
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('portalView').style.display = 'block';
+
+    const c = currentCustomerData.customer;
+    applyPortalGreeting();
+    document.getElementById('custName').innerText = c.name || '-';
+    document.getElementById('custId').innerText = c.id || '-';
+    const homeIdEl = document.getElementById('homeCustomerId');
+    const homePkgEl = document.getElementById('homeCustomerPackage');
+    const homeStatusEl = document.getElementById('homeCustomerStatus');
+    if (homeIdEl) homeIdEl.innerText = c.id || '-';
+    if (homePkgEl) homePkgEl.innerText = c.package || '-';
+    if (homeStatusEl) {
+        const active = c.status === 'Aktif';
+        homeStatusEl.className = active ? 'net-badge net-active' : 'net-badge net-inactive';
+        homeStatusEl.innerHTML = active ? '<i class="fas fa-circle-check"></i> AKTIF' : '<i class="fas fa-circle-xmark"></i> ISOLIR';
+    }
+    document.getElementById('custPackage').innerText = c.package || '-';
+    document.getElementById('custSpeed').innerText = c.speed || 'Broadband Aktif';
+    document.getElementById('custAddress').innerText = c.address || '-';
+    const packageTabEl = document.getElementById('custPackageTab');
+    const speedTabEl = document.getElementById('custSpeedTab');
+    if (packageTabEl) packageTabEl.innerText = c.package || '-';
+    if (speedTabEl) speedTabEl.innerText = c.speed || 'Broadband Aktif';
+
+    const netBadge = document.getElementById('custNetStatus');
+    const isAktif = c.status === 'Aktif';
+    netBadge.className = isAktif ? 'net-badge net-active' : 'net-badge net-inactive';
+    netBadge.innerHTML = isAktif 
+        ? '<i class="fas fa-circle-check"></i> AKUN AKTIF' 
+        : '<i class="fas fa-circle-xmark"></i> ISOLIR';
+
+    if (currentCustomerData.announcement && currentCustomerData.announcement.trim() !== '') {
+        document.getElementById('custAnnouncement').innerText = currentCustomerData.announcement;
+        document.getElementById('boxAnnouncement').style.display = 'flex';
+    } else {
+        document.getElementById('boxAnnouncement').style.display = 'none';
+    }
+
+    const noticeBox = document.getElementById('boxCustomerNotice');
+    const noticeContent = document.getElementById('custNoticeContent');
+    if (currentCustomerData.targetedNotices && currentCustomerData.targetedNotices.length > 0) {
+        noticeContent.innerHTML = currentCustomerData.targetedNotices.map(n => {
+            const cleanMsg = sanitizeHTML(n.msg || '');
+            const cleanTime = n.time ? ` <small style="color:var(--text-muted);">(${n.time})</small>` : '';
+            return `<div style="margin-bottom:6px;">&bull; ${cleanMsg}${cleanTime}</div>`;
+        }).join('');
+        noticeBox.style.display = 'block';
+    } else {
+        noticeBox.style.display = 'none';
+    }
+
+    const notifBadge = document.getElementById('notificationHubBadge');
+    const portalNoticesForBadge = Array.isArray(currentCustomerData.targetedNotices)
+        ? currentCustomerData.targetedNotices
+        : [];
+    // Kartu AI bukan notifikasi. Badge hanya muncul jika memang ada
+    // notifikasi Manager yang belum dibaca.
+    const unreadManagerCount = portalNoticesForBadge.filter(n => n && !n.read).length;
+    if (notifBadge) {
+        notifBadge.style.display = unreadManagerCount > 0 ? 'inline-flex' : 'none';
+        notifBadge.innerHTML = `<i class="fas fa-circle"></i> ${unreadManagerCount} Baru`;
+    }
+
+    renderBillInfo();
+    renderPaymentHistory();
+    renderMessageHistory();
+    updatePortalLiveChatBadge();
+
+    // AI STATUS ISOLIR — terpisah dari notifikasi masuk.
+    const statusIsolir = String(c.status || '').toLowerCase() !== 'aktif';
+    if (statusIsolir) {
+        const statusFingerprint = `${c.id || ''}:ISOLIR`;
+        if (statusFingerprint !== aiStatusFingerprint) {
+            aiStatusFingerprint = statusFingerprint;
+            triggerPortalAI('general', {
+                source: 'customer-status',
+                prompt: 'Status layanan pelanggan saat ini adalah ISOLIR. Berikan pemberitahuan singkat, natural, dan mudah dipahami kepada pelanggan bahwa layanan sedang dalam status isolir. Jelaskan bahwa pelanggan perlu menyelesaikan kewajiban tagihan yang masih tersedia bila memang ada. Gunakan hanya fakta dari konteks akun. Jangan menganggap ini sebagai notifikasi masuk dan jangan menyalin isi notifikasi.'
+            });
+        }
+    } else {
+        aiStatusFingerprint = '';
+    }
+
+    // AI NOTIFIKASI — dipanggil hanya ketika notifikasi berubah
+    const portalNotices = Array.isArray(currentCustomerData.targetedNotices)
+        ? currentCustomerData.targetedNotices
+        : [];
+
+    if (portalNotices.length > 0) {
+        const fingerprint = portalNotices
+            .slice(0, 10)
+            .map(n => `${n?.id || ''}:${n?.updatedAt || n?.time || ''}:${n?.read ? 1 : 0}`)
+            .join('|');
+
+        if (fingerprint && fingerprint !== aiNotificationFingerprint) {
+            aiNotificationFingerprint = fingerprint;
+
+            triggerPortalAI('notifikasi', {
+                notificationCount: portalNotices.length,
+                source: 'notification+billing',
+                prompt: 'Ada informasi atau aktivitas baru pada akun pelanggan ini. Pahami situasinya dengan melihat KEDUA sumber konteks yang tersedia: tagihan aktif pelanggan dan notifikasi terbaru. Jangan hanya membaca notifikasi. Cocokkan isi notifikasi dengan status tagihan bila relevan, lalu jelaskan secara singkat dan natural apa arti situasinya bagi pelanggan, apakah ada tindakan yang perlu dilakukan, dan apa langkah berikutnya jika memang diperlukan. Jangan menyalin, mengulang, atau merangkum teks notifikasi secara mentah. Jika tagihan sudah lunas, jelaskan berdasarkan status tagihan tersebut; jika masih ada tagihan, jelaskan berdasarkan nominal/status tagihan yang tersedia. Jika tidak ada tindakan yang perlu dilakukan, katakan secara wajar. Gunakan hanya fakta yang tersedia di konteks akun dan jangan mengarang detail.'
+            });
+        }
+    }
+}
+
+function renderBillInfo() {
+    activeCurrentBillInfo = calculateCurrentBill(currentCustomerData.invoices, currentCustomerData.payments);
+
+    const amtEl = document.getElementById('custBillAmount');
+    const badgeEl = document.getElementById('custTempoBadge');
+    const invEl = document.getElementById('custInvoiceId');
+    const dueEl = document.getElementById('custDueDate');
+    const statEl = document.getElementById('custBillStatus');
+    const actionBox = document.getElementById('unpaidActionButtons');
+
+    if (!activeCurrentBillInfo) {
+        amtEl.innerText = 'Rp 0';
+        amtEl.style.color = 'var(--green)';
+        badgeEl.className = 'tempo-badge tempo-success';
+        badgeEl.innerHTML = '<i class="fas fa-check-circle"></i> SEMUA TAGIHAN LUNAS';
+        invEl.innerText = '-';
+        dueEl.innerText = '-';
+        statEl.innerText = 'LUNAS';
+        statEl.style.color = 'var(--green)';
+        actionBox.style.display = 'none';
+        return;
+    }
+
+    actionBox.style.display = 'flex';
+    amtEl.style.color = 'var(--text)';
+    amtEl.innerText = rupiah(activeCurrentBillInfo.totalOutstanding);
+    
+    const primaryInv = activeCurrentBillInfo.primary.invoice;
+    invEl.innerText = activeCurrentBillInfo.unpaidCount > 1 
+        ? `${primaryInv.id} (+${activeCurrentBillInfo.unpaidCount - 1} tagihan lainnya)` 
+        : primaryInv.id;
+
+    dueEl.innerText = primaryInv.dueDate ? formatIndoFullDate(primaryInv.dueDate) : (formatIndoMonth(primaryInv.month) || '-');
+    statEl.innerText = activeCurrentBillInfo.unpaidCount > 1 
+        ? `MENUNGGAK (${activeCurrentBillInfo.unpaidCount} PERIODE)` 
+        : (primaryInv.status || 'BELUM LUNAS').toUpperCase();
+    statEl.style.color = 'var(--accent)';
+
+    if (primaryInv.dueDate) {
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const due = new Date(primaryInv.dueDate);
+        due.setHours(0,0,0,0);
+        const diffDays = Math.ceil((due.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+
+        if (diffDays > 0) {
+            badgeEl.className = 'tempo-badge tempo-warning';
+            badgeEl.innerText = `Jatuh tempo ${diffDays} hari lagi`;
+        } else if (diffDays === 0) {
+            badgeEl.className = 'tempo-badge tempo-danger';
+            badgeEl.innerText = `Jatuh tempo hari ini`;
+        } else {
+            badgeEl.className = 'tempo-badge tempo-danger';
+            badgeEl.innerText = `Terlambat ${Math.abs(diffDays)} hari`;
+        }
+    } else {
+        badgeEl.style.display = 'none';
+    }
+}
+
+function renderBankAccounts(bankRawText) {
+    const container = document.getElementById('bankAccountsListContainer');
+    container.innerHTML = '';
+
+    if (!bankRawText || !bankRawText.trim()) {
+        container.innerHTML = `
+            <div class="bank-item-card" style="text-align:center; color:var(--text-muted); font-size:11px;">
+                Informasi rekening transfer dapat diminta langsung kepada Admin Billing.
+            </div>`;
+        return;
+    }
+
+    const lines = bankRawText.split('\n').map(l => l.trim()).filter(Boolean);
+    lines.forEach(line => {
+        const numMatch = line.match(/\b\d{5,}\b/);
+        const accNum = numMatch ? numMatch[0] : '';
+        const card = document.createElement('div');
+        card.className = 'bank-item-card';
+
+        card.innerHTML = `
+            <div class="bank-item-header">
+                <b style="font-size:11px; color:var(--primary);">${line}</b>
+            </div>
+            ${accNum ? `
+            <div class="bank-item-number">
+                <span style="font-family:monospace; letter-spacing:1.5px; font-size:14px;">${accNum}</span>
+                <button type="button" class="btn-copy" onclick="copyDirect('${accNum}', this)">
+                    <i class="fas fa-copy"></i> Salin
+                </button>
+            </div>` : ''}
+        `;
+        container.appendChild(card);
+    });
+}
+
+function copyText(elementId, btn) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    copyDirect(el.innerText.trim(), btn);
+}
+
+function copyAmount(elementId, btn) {
+    if (!activeCurrentBillInfo) return;
+    copyDirect(String(activeCurrentBillInfo.totalOutstanding), btn);
+}
+
+function copyDirect(text, btn) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => showCopiedFeedback(btn));
+    } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+            document.execCommand('copy');
+            showCopiedFeedback(btn);
+        } catch (e) {
+            prompt('Salin nomor:', text);
+        }
+        document.body.removeChild(ta);
+    }
+}
+
+function showCopiedFeedback(btn) {
+    if (!btn) return;
+    const oldHtml = btn.innerHTML;
+    btn.innerHTML = 'Tersalin ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+        btn.innerHTML = oldHtml;
+        btn.classList.remove('copied');
+    }, 2000);
+}
+
+function openPaymentModal() {
+    if (!activeCurrentBillInfo) return alert('Tidak ada tagihan aktif yang perlu dibayar.');
+    
+    const c = currentCustomerData.customer;
+    const s = currentCustomerData.settings || {};
+    const primary = activeCurrentBillInfo.primary;
+    const inv = primary.invoice;
+
+    document.getElementById('payModalInvId').innerText = inv.id;
+    document.getElementById('payModalPeriod').innerText = formatIndoMonth(inv.month);
+    document.getElementById('payModalDueDate').innerText = formatIndoFullDate(inv.dueDate);
+    document.getElementById('payModalAmount').innerText = rupiah(primary.total);
+    document.getElementById('payModalPaid').innerText = rupiah(primary.paid);
+    document.getElementById('payModalRemaining').innerText = rupiah(activeCurrentBillInfo.totalOutstanding);
+
+    renderBankAccounts(s.bank);
+
+    const qrisBox = document.getElementById('payModalQrisContainer');
+    const qrisImg = document.getElementById('payModalQrisImg');
+    if (s.qrisImage && s.qrisImage.trim()) {
+        qrisImg.src = s.qrisImage.trim();
+        qrisBox.style.display = 'block';
+    } else {
+        qrisBox.style.display = 'none';
+    }
+
+    document.getElementById('btnDownloadUnpaidInvoice').onclick = () => {
+        downloadInvoicePDFCore(inv.id, false);
+    };
+
+    document.getElementById('modalPayment').style.display = 'flex';
+    triggerPortalAI('detail_tagihan', { invoiceId: inv.id, remaining: Number(activeCurrentBillInfo.totalOutstanding || 0) });
+}
+
+function closePaymentModal() {
+    document.getElementById('modalPayment').style.display = 'none';
+}
+
+function downloadCurrentUnpaidPDF() {
+    if (!activeCurrentBillInfo) return;
+    downloadInvoicePDFCore(activeCurrentBillInfo.primary.invoice.id, false);
+}
+
+// Riwayat Pembayaran
+function renderPaymentHistory() {
+    const listEl = document.getElementById('paymentHistoryList');
+    const payments = currentCustomerData.payments || [];
+
+    if (!payments.length) {
+        listEl.innerHTML = '<p style="font-size:12px;color:var(--text-muted);text-align:center;padding:10px;">Belum ada riwayat pembayaran tercatat.</p>';
+        return;
+    }
+
+    listEl.innerHTML = payments.slice().reverse().map(p => `
+        <div class="list-row">
+            <div>
+                <b style="color:var(--text);">${p.date || '-'}</b>
+                <div style="font-size:11px;color:var(--text-muted);">${p.invoiceId || 'Tagihan'} · ${p.method || 'Transfer'}</div>
+            </div>
+            <div style="text-align:right;">
+                <b style="color:var(--green);">${rupiah(p.amount)}</b>
+                <div style="margin-top: 4px;">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="downloadInvoicePDFCore('${p.invoiceId}', true, '${p.id}')">
+                        <i class="fas fa-file-pdf" style="color: var(--red);"></i> Unduh PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// ==========================================
+// 4. MODUL: 📨 RIWAYAT PESAN (THREADED INBOX)
+// ==========================================
+function extractTicketDetails(notif) {
+    if (!notif) return { title: 'Pesan', category: 'Umum', cleanText: '' };
+
+    const rawMsg = String(notif.msg || '');
+    let cat = notif.category || '';
+    let title = notif.title || '';
+    let cleanText = '';
+
+    if (rawMsg.includes('[LAPOR GANGGUAN]')) {
+        const catMatch = rawMsg.match(/Kategori:\s*<b>(.*?)<\/b>/i);
+        if (catMatch && catMatch[1]) cat = catMatch[1].trim();
+        const noteMatch = rawMsg.match(/Keterangan:\s*([\s\S]*)$/i);
+        if (noteMatch && noteMatch[1]) cleanText = noteMatch[1].trim();
+        title = cat ? `🔧 ${cat}` : '🔧 Lapor Gangguan Internet';
+    } else if (rawMsg.includes('meminta ubah paket')) {
+        title = '⚡ Permintaan Ubah Paket Layanan';
+        cat = 'Ubah Paket';
+        cleanText = rawMsg.replace(/<[^>]+>/g, ' ').trim();
+    } else {
+        title = notif.title || (notif.source === 'ADMIN_TO_PORTAL' ? 'Pemberitahuan RB Home' : 'Laporan Pelanggan');
+        cat = notif.category || (notif.source === 'ADMIN_TO_PORTAL' ? 'Admin' : 'Laporan');
+        cleanText = rawMsg.replace(/<[^>]+>/g, ' ').trim();
+    }
+
+    if (!cleanText) cleanText = rawMsg.replace(/<[^>]+>/g, ' ').trim();
+    return { title, category: cat || 'Umum', cleanText };
+}
+
+// Global cache thread untuk modal view
+let activeMessageThreads = [];
+
+function renderMessageHistory() {
+    const container = document.getElementById('messageHistoryContainer');
+    const unreadBadgeEl = document.getElementById('unreadReplyBadge');
+    if (!container || !activeDatabase || !currentCustomerData) return;
+
+    const c = currentCustomerData.customer;
+    const allNotifs = Array.isArray(activeDatabase.notifications) ? activeDatabase.notifications : [];
+
+    // Filter pesan keluar pelanggan ini
+    const customerTickets = allNotifs.filter(n => n && n.source === 'FORM_PELANGGAN' && String(n.customerId) === String(c.id) && n.messageType !== 'live_chat' && n.messageType !== 'live_chat_reply');
+
+    // Balasan thread eksplisit (messageType: 'admin_reply') — masuk 📨 Riwayat Pesan
+    const adminReplyItems = allNotifs.filter(n => {
+        if (!n || n.source !== 'ADMIN_TO_PORTAL') return false;
+        if (n.messageType !== 'admin_reply') return false;
+        return (
+            String(n.targetCustomer) === String(c.id) ||
+            String(n.customerId) === String(c.id) ||
+            (n.phone && normalizePhone(n.phone) === normalizePhone(c.phone))
+        );
+    });
+
+    // Pesan personal biasa dari Admin (BUKAN reply) → tetap notice personal/besar existing
+    const adminDirectNotices = allNotifs.filter(n => {
+        if (!n || n.source !== 'ADMIN_TO_PORTAL') return false;
+        if (n.messageType === 'admin_reply' || n.messageType === 'live_chat' || n.messageType === 'live_chat_reply') return false;
+        const isBroadcast = (n.target === 'all' || n.targetCustomer === 'all' || n.customerId === 'all');
+        if (isBroadcast) return false;
+        return (
+            String(n.targetCustomer) === String(c.id) ||
+            String(n.customerId) === String(c.id) ||
+            (n.phone && normalizePhone(n.phone) === normalizePhone(c.phone))
+        );
+    });
+
+    // Pemasangan percakapan ke dalam thread
+    const threads = [];
+    const pairedAdminReplyIds = new Set();
+
+    customerTickets.forEach(ticket => {
+        const starterThreadId = getThreadIdMsg(ticket);
+        const threadReplies = adminReplyItems.filter(rep => {
+            if (rep.replyToId && String(rep.replyToId) === String(ticket.id)) return true;
+            // Fallback untuk reply lama yang hanya punya threadId tanpa replyToId
+            if (getThreadIdMsg(rep) === starterThreadId) return true;
+            return false;
+        }).sort((a, b) => (Number(a.createdAt) || 0) - (Number(b.createdAt) || 0)); // kronologis naik
+
+        threadReplies.forEach(r => pairedAdminReplyIds.add(String(r.id)));
+
+        threads.push({
+            id: ticket.id,
+            starter: ticket,
+            replies: threadReplies,
+            lastTime: (threadReplies.length > 0) ? (threadReplies[threadReplies.length - 1].time || ticket.time) : ticket.time
+        });
+    });
+
+    // Sisa pesan personal dari Admin yang dikirim langsung (jika belum berpasangan)
+    const directAdminThreads = adminDirectNotices.filter(rep => !pairedAdminReplyIds.has(String(rep.id)));
+    directAdminThreads.forEach(rep => {
+        threads.push({
+            id: rep.id,
+            starter: rep,
+            replies: [],
+            isDirectAdminNotice: true,
+            lastTime: rep.time
+        });
+    });
+
+    activeMessageThreads = threads;
+
+    // Hitung badge balasan baru yang belum dibaca pelanggan
+    let unreadCount = 0;
+    threads.forEach(th => {
+        if (th.isDirectAdminNotice && th.starter.read === false) unreadCount++;
+        th.replies.forEach(r => { if (r.read === false) unreadCount++; });
+    });
+
+    if (unreadBadgeEl) {
+        if (unreadCount > 0) {
+            unreadBadgeEl.style.display = 'inline-flex';
+            unreadBadgeEl.innerText = `🔴 ${unreadCount} Balasan Baru`;
+        } else {
+            unreadBadgeEl.style.display = 'none';
+        }
+    }
+
+    if (!threads.length) {
+        container.innerHTML = '<p style="font-size: 12px; color: var(--text-muted); text-align: center; padding: 14px;">Belum ada riwayat pesan.</p>';
+        return;
+    }
+
+    container.innerHTML = threads.map(th => {
+        const isFromCust = !th.isDirectAdminNotice;
+        const details = extractTicketDetails(th.starter);
+        const hasReplies = th.replies.length > 0 || th.isDirectAdminNotice;
+        const statusBadgeClass = hasReplies ? 'msg-badge-replied' : 'msg-badge-waiting';
+        const statusBadgeText = hasReplies ? '🟢 Sudah Dibalas' : '🟡 Menunggu Balasan';
+        const sendTime = th.starter.time || '-';
+        const snippet = details.cleanText.length > 85 ? details.cleanText.substring(0, 85) + '...' : details.cleanText;
+
+        const unreadDot = (!th.isDirectAdminNotice && th.replies.some(r => r.read === false)) || (th.isDirectAdminNotice && th.starter.read === false)
+            ? '<span style="color:var(--red); font-size:9px; font-weight:800; margin-left:4px;">● BARU</span>'
+            : '';
+
+        return `
+            <div class="msg-thread-card" onclick="openMessageThreadModal('${th.id}')">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <b style="font-size:13px; color:var(--text);">${escapeHTML(details.title)} ${unreadDot}</b>
+                    <span class="msg-badge ${statusBadgeClass}">${statusBadgeText}</span>
+                </div>
+                <div style="font-size:11.5px; color:var(--text-muted); line-height:1.5; margin-bottom:8px;">
+                    ${escapeHTML(snippet)}
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; font-size:10.5px; color:var(--text-muted);">
+                    <span><i class="fas fa-clock"></i> ${sendTime}</span>
+                    <span style="color:var(--primary); font-weight:700;">Lihat Balasan <i class="fas fa-chevron-right" style="font-size:9px;"></i></span>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function openMessageThreadModal(threadId) {
+    const thread = activeMessageThreads.find(t => String(t.id) === String(threadId));
+    if (!thread) return;
+
+    const modal = document.getElementById('modalMsgThread');
+    const titleEl = document.getElementById('threadDetailTitle');
+    const badgeEl = document.getElementById('threadDetailCategoryBadge');
+    const convList = document.getElementById('threadDetailConversationList');
+
+    const details = extractTicketDetails(thread.starter);
+    titleEl.innerText = details.title;
+    badgeEl.innerText = details.category;
+
+    let hasUnreadChanged = false;
+
+    // Render pesan awal & seluruh balasan dalam thread
+    let conversationHtml = '';
+
+    if (thread.isDirectAdminNotice) {
+        // Pesan langsung dari Admin
+        const rawAdminMsg = thread.starter.msg || '-';
+        conversationHtml += `
+            <div class="bubble-box bubble-in">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <b style="color:var(--green); font-size:11.5px;"><i class="fas fa-shield-halved"></i> 📥 Balasan RB Home (Admin)</b>
+                    <small style="color:var(--text-muted); font-size:10px;">${thread.starter.time || '-'}</small>
+                </div>
+                <div style="color:var(--text);">${sanitizeHTML(rawAdminMsg)}</div>
+            </div>
+        `;
+
+        if (thread.starter.read === false) {
+            thread.starter.read = true;
+            hasUnreadChanged = true;
+        }
+    } else {
+        // 1. Pesan pelanggan
+        const custSnippet = details.cleanText || (thread.starter.msg ? thread.starter.msg.replace(/<[^>]+>/g, ' ') : '-');
+        conversationHtml += `
+            <div class="bubble-box bubble-out">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <b style="color:var(--primary); font-size:11.5px;"><i class="fas fa-user"></i> 📤 Pesan Anda (${currentCustomerData.customer.name})</b>
+                    <small style="color:var(--text-muted); font-size:10px;">${thread.starter.time || '-'}</small>
+                </div>
+                <div style="color:var(--text);">${escapeHTML(custSnippet)}</div>
+            </div>
+        `;
+
+        // 2. Balasan dari Admin jika sudah ada
+        if (thread.replies.length > 0) {
+            thread.replies.forEach(rep => {
+                const repMsg = rep.msg || '-';
+                conversationHtml += `
+                    <div class="bubble-box bubble-in">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                            <b style="color:var(--green); font-size:11.5px;"><i class="fas fa-shield-halved"></i> 📥 Balasan RB Home (Admin)</b>
+                            <small style="color:var(--text-muted); font-size:10px;">${rep.time || '-'}</small>
+                        </div>
+                        <div style="color:var(--text);">${sanitizeHTML(repMsg)}</div>
+                    </div>
+                `;
+
+                if (rep.read === false) {
+                    rep.read = true;
+                    hasUnreadChanged = true;
+                }
+            });
+        } else {
+            conversationHtml += `
+                <div style="text-align:center; padding:16px 12px; background:var(--item-bg); border-radius:12px; border:1px dashed var(--border); font-size:12px; color:var(--text-muted);">
+                    <i class="fas fa-hourglass-half" style="color:var(--amber); margin-bottom:6px; font-size:16px;"></i><br>
+                    <b style="color:var(--amber);">Status: 🟡 Menunggu Balasan</b><br>
+                    Laporan Anda telah tercatat di antrean Billing RB Home dan sedang menunggu penanganan petugas teknisi.
+                </div>
+            `;
+        }
+    }
+
+    convList.innerHTML = conversationHtml;
+    modal.style.display = 'flex';
+
+    // Sinkronisasi status read hanya untuk notifikasi milik pelanggan ini.
+    if (hasUnreadChanged && activeDatabase && currentCustomerData?.customer) {
+        const readIds = [];
+        const allNotifs = Array.isArray(activeDatabase.notifications) ? activeDatabase.notifications : [];
+        allNotifs.forEach(n => {
+            if (n && n.read === true) {
+                // Hanya kirim ID yang relevan dengan customer saat ini.
+                const cid = String(currentCustomerData.customer.id);
+                const relevant = String(n.customerId) === cid || String(n.targetCustomer) === cid ||
+                    (n.phone && normalizePhone(n.phone) === normalizePhone(currentCustomerData.customer.phone)) ||
+                    (n.target === 'all' || n.targetCustomer === 'all' || n.customerId === 'all');
+                if (relevant) readIds.push(String(n.id));
+            }
+        });
+        // Code.gs lama tidak menyediakan endpoint mark-read. Jangan POST seluruh DB
+        // hanya karena pelanggan membuka thread; status read lokal tetap responsif.
+        if (readIds.length) {
+            currentCustomerData.notifications = (currentCustomerData.notifications || []).map(n =>
+                readIds.includes(String(n.id)) ? { ...n, read: true, updatedAt: Date.now() } : n
+            );
+        }
+        renderMessageHistory();
+    }
+}
+
+function closeMessageThreadModal() {
+    const modal = document.getElementById('modalMsgThread');
+    if (modal) modal.style.display = 'none';
+}
+
+// GENERATOR PDF TERKALIBRASI F4 (215 x 330 mm) LENGKAP & BEBAS CUT-OFF BAWAH
+let html2pdfLoaderPromise = null;
+function loadHtml2Pdf() {
+    if (typeof html2pdf === 'function') return Promise.resolve();
+    if (html2pdfLoaderPromise) return html2pdfLoaderPromise;
+    html2pdfLoaderPromise = new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-html2pdf-loader]');
+        if (existing) {
+            existing.addEventListener('load', resolve, { once: true });
+            existing.addEventListener('error', reject, { once: true });
+            return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+        script.async = true;
+        script.dataset.html2pdfLoader = '1';
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('Gagal memuat modul PDF.'));
+        document.head.appendChild(script);
+    });
+    return html2pdfLoaderPromise;
+}
+
+async function downloadInvoicePDFCore(invId, isLunas, payId = null) {
+    const c = currentCustomerData.customer;
+    const settings = currentCustomerData.settings || {};
+    const brand = (settings.brandName || 'RB HOME NET').trim();
+    const comp = (settings.companyName || 'INTERNET SERVICE PROVIDER').trim();
+    const logoSrc = settings.logo || DEFAULT_LOGO;
+
+    let inv = (currentCustomerData.invoices || []).find(x => x && x.id === invId);
+    let pay = payId ? (currentCustomerData.payments || []).find(x => String(x.id) === String(payId)) : null;
+
+    let subtotal = 0, discount = 0, nett = 0, ppn = 0, total = 0, paid = 0, sisa = 0, includePpn = true;
+    let periodStr = '-', dueDateStr = '-', descStr = '';
+
+    if (inv) {
+        const fin = calculateInvoiceFinancials(inv, currentCustomerData.payments);
+        subtotal = fin.subtotal;
+        discount = fin.discount;
+        nett = fin.nett;
+        includePpn = fin.includePpn;
+        ppn = fin.ppn;
+        total = fin.total;
+        paid = fin.paid;
+        sisa = fin.sisa;
+        periodStr = formatIndoMonth(inv.month);
+        dueDateStr = formatIndoFullDate(inv.dueDate);
+        descStr = inv.desc || ('Internet Broadband Paket ' + c.package);
+    } else if (pay) {
+        subtotal = Number(pay.packagePrice || pay.amount) || 0;
+        discount = Number(pay.discount) || 0;
+        nett = Math.max(0, subtotal - discount);
+        includePpn = pay.ppnInclude !== false;
+        ppn = includePpn ? 0 : Math.round(nett * 0.11);
+        total = nett + ppn;
+        periodStr = formatIndoMonth(pay.month);
+        dueDateStr = formatIndoFullDate(pay.dueDate);
+        descStr = pay.desc || ('Internet Broadband Paket ' + c.package);
+        paid = total;
+        sisa = 0;
+    }
+
+    const stampText = isLunas ? 'LUNAS' : 'BELUM LUNAS';
+    const stampColor = isLunas ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)';
+
+    const qrisSide = (!isLunas && settings.qrisImage)
+        ? `<div style="text-align:center; flex:0 0 160px;">
+            <div style="font-size:10px; font-weight:800; margin-bottom:4px; color:#1e293b;">SCAN QRIS</div>
+            <img src="${settings.qrisImage}" style="max-width:140px; max-height:140px; width:100%; object-fit:contain; border:1px solid #cbd5e1; border-radius:6px; padding:3px; background:#fff;">
+           </div>`
+        : '';
+
+    const footerBlock = isLunas
+        ? `<div style="margin-top:14px; color:#1e293b; font-size:11px; line-height:1.5; background:#f8fafc; border:1px solid #e2e8f0; padding:12px; border-radius:8px;">
+            <p style="margin:0; font-weight:700;">Terima kasih telah melakukan pembayaran tagihan Anda.</p>
+            <p style="margin:3px 0 0; font-size:10px; color:#64748b;">Harap simpan tanda terima sah ini sebagai bukti pembayaran resmi Anda.</p>
+           </div>`
+        : `<div style="display:flex; gap:14px; align-items:flex-start; margin-top:14px;">
+            <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; font-size:11px;">
+                <b style="font-size:11px; color:#0f172a;">REKENING PEMBAYARAN:</b><br>
+                <pre style="white-space:pre-wrap; font-family:inherit; font-size:10.5px; margin:4px 0; color:#334155; line-height:1.45;">${settings.bank || '-'}</pre>
+                <span style="font-size:10.5px; font-weight:700; color:#0f172a;">Konfirmasi WA: ${settings.wa || '-'}</span>
+            </div>${qrisSide}
+           </div>`;
+
+    const container = document.getElementById('pdfRenderContainer');
+    container.innerHTML = `
+        <div id="invoicePrintArea" style="width:710px; box-sizing:border-box; padding:20px 24px; background:#ffffff; color:#1e293b; font-family:Arial, Helvetica, sans-serif; position:relative;">
+            <div style="position:absolute; top:30%; left:25%; transform:rotate(-16deg); border:5px solid ${stampColor}; color:${stampColor}; font-size:42px; font-weight:900; padding:6px 20px; border-radius:10px; pointer-events:none; z-index:10; letter-spacing:2px; opacity:0.85;">
+                ${stampText}
+            </div>
+
+            <div style="display:flex; align-items:center; border-bottom:2.5px solid #1261ff; padding-bottom:10px;">
+                <img src="https://files.catbox.moe/hks861.png" style="width:60px; height:60px; object-fit:contain; margin-right:14px;">
+                <div>
+                    <h1 style="margin:0; font-size:21px; color:#1261ff; line-height:1.2;">${brand}</h1>
+                    <p style="margin:2px 0 0; font-size:10px; font-weight:700; letter-spacing:1px; color:#64748b; text-transform:uppercase;">${comp}</p>
+                    <p style="margin:2px 0 0; font-size:11px; color:#64748b;">${settings.address || ''}</p>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0;">
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px 12px; border-radius:8px; font-size:11px; line-height:1.5;">
+                    <b>TAGIHAN KEPADA:</b><br>
+                    ID: <b>${c.id}</b><br>
+                    Nama: <b>${c.name}</b><br>
+                    WhatsApp: ${c.phone || '-'}<br>
+                    Alamat: ${c.address || '-'}
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px 12px; border-radius:8px; font-size:11px; line-height:1.5;">
+                    <b>DETAIL TRANSAKSI:</b><br>
+                    No. Invoice: <b>${invId}</b><br>
+                    Periode: <b>${periodStr}</b><br>
+                    Jatuh Tempo: <b>${dueDateStr}</b><br>
+                    Status: <b style="color:${isLunas ? '#166534' : '#b91c1c'};">${stampText}</b>
+                </div>
+            </div>
+
+            <table style="width:100%; border-collapse:collapse; margin:12px 0; font-size:11.5px;">
+                <thead>
+                    <tr style="background:#f1f5f9; text-align:left;">
+                        <th style="padding:8px 10px; border-bottom:2px solid #cbd5e1;">Deskripsi Layanan</th>
+                        <th style="padding:8px 10px; border-bottom:2px solid #cbd5e1; text-align:right;">Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:8px 10px; border-bottom:1px solid #e2e8f0; font-weight:700;">${descStr}</td>
+                        <td style="padding:8px 10px; border-bottom:1px solid #e2e8f0; text-align:right; font-weight:700;">${rupiah(subtotal)}</td>
+                    </tr>
+                    ${discount > 0 ? `<tr><td style="padding:6px 10px; border-bottom:1px solid #e2e8f0; color:#dc2626; font-weight:700;">DISKON POTONGAN</td><td style="padding:6px 10px; border-bottom:1px solid #e2e8f0; text-align:right; color:#dc2626; font-weight:700;">(-) ${rupiah(discount)}</td></tr>` : ''}
+                    ${includePpn
+                        ? `<tr><td style="padding:6px 10px; border-bottom:1px solid #e2e8f0; color:#475569;">Harga Sudah Termasuk PPN 11%</td><td style="padding:6px 10px; border-bottom:1px solid #e2e8f0; text-align:right; color:#475569;">Termasuk</td></tr>`
+                        : `<tr><td style="padding:6px 10px; border-bottom:1px solid #e2e8f0;">PPN 11%</td><td style="padding:6px 10px; border-bottom:1px solid #e2e8f0; text-align:right;">(+) ${rupiah(ppn)}</td></tr>`}
+                    <tr style="font-weight:bold; background:#f8fafc;">
+                        <td style="padding:8px 10px; font-size:12px;">TOTAL TAGIHAN</td>
+                        <td style="padding:8px 10px; text-align:right; font-size:12px;">${rupiah(total)}</td>
+                    </tr>
+                    <tr style="color:#166534;">
+                        <td style="padding:6px 10px; border-bottom:1px solid #e2e8f0; font-weight:700;">SUDAH DIBAYAR</td>
+                        <td style="padding:6px 10px; border-bottom:1px solid #e2e8f0; text-align:right; font-weight:700;">(-) ${rupiah(paid)}</td>
+                    </tr>
+                    <tr style="color:#b91c1c; font-weight:bold;">
+                        <td style="padding:8px 10px; font-size:13px;">SISA TAGIHAN</td>
+                        <td style="padding:8px 10px; text-align:right; font-size:13px;">${rupiah(sisa)}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            ${footerBlock}
+        </div>
+    `;
+
+    const opt = {
+        margin: [6, 6, 6, 6],
+        filename: isLunas ? `Kuitansi_${invId}.pdf` : `Tagihan_${invId}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, letterRendering: true, scrollY: 0, windowWidth: 760 },
+        jsPDF: { unit: 'mm', format: [215, 330], orientation: 'portrait' }
+    };
+
+    showToast('Menyiapkan file PDF Invoice (F4)...');
+    try {
+        await loadHtml2Pdf();
+    } catch (err) {
+        container.innerHTML = '';
+        alert('Modul PDF gagal dimuat. Periksa koneksi internet lalu coba kembali.');
+        return;
+    }
+    html2pdf().set(opt).from(document.getElementById('invoicePrintArea')).save().then(() => {
+        container.innerHTML = '';
+        showToast('Dokumen PDF berhasil diunduh.');
+    }).catch(err => {
+        console.error(err);
+        container.innerHTML = '';
+        alert('Gagal membuat PDF. Silakan coba kembali.');
+    });
+}
+
+// Upgrade / Downgrade Sinkronisasi Penuh ke Cloud Billing (Tanpa LocalStorage)
+function openUpgradeModal() {
+    if (!currentCustomerData || !currentCustomerData.customer) return;
+    const c = currentCustomerData.customer;
+    document.getElementById('modalCurrentPkg').innerText = `${c.package} (${c.speed})`;
+    document.getElementById('modalCurrentPrice').innerText = rupiah(c.price);
+
+    const pendingNotif = (activeDatabase && Array.isArray(activeDatabase.notifications))
+        ? activeDatabase.notifications.find(n => n && String(n.customerId) === String(c.id) && !n.read && n.source === 'FORM_PELANGGAN' && (n.msg || '').includes('meminta ubah paket'))
+        : null;
+
+    if (pendingNotif) {
+        document.getElementById('upgradeStatusBox').style.display = 'block';
+        document.getElementById('upgradeStatusText').innerHTML = `
+            <i class="fas fa-clock"></i> <b>Permintaan Terkirim ke Billing (WAITING / PENDING)</b><br>
+            Permintaan perubahan paket Anda tercatat pada ${pendingNotif.time} dan sedang menunggu konfirmasi admin billing.`;
+        document.getElementById('btnSubmitUpgrade').style.display = 'none';
+    } else {
+        document.getElementById('upgradeStatusBox').style.display = 'none';
+        document.getElementById('btnSubmitUpgrade').style.display = 'flex';
+    }
+
+    renderPackageOptions();
+    document.getElementById('modalUpgrade').style.display = 'flex';
+    triggerPortalAI('ubah_paket', { currentPackage: currentCustomerData?.customer?.package || '' });
+}
+
+function closeUpgradeModal() {
+    document.getElementById('modalUpgrade').style.display = 'none';
+    selectedTargetPackage = null;
+}
+
+function renderPackageOptions() {
+    const container = document.getElementById('packageListContainer');
+    const pkgs = currentCustomerData.packages || [];
+    const currentName = currentCustomerData.customer.package;
+    const currentPrice = Number(currentCustomerData.customer.price) || 0;
+
+    if (!pkgs.length) {
+        container.innerHTML = '<p style="font-size: 12px; color: var(--text-muted);">Tidak ada daftar paket tersedia.</p>';
+        return;
+    }
+
+    container.innerHTML = pkgs.map(p => {
+        const isCurrent = p.name === currentName;
+        const pPrice = Number(p.price) || 0;
+        let badgeType = '';
+        if (!isCurrent) {
+            badgeType = pPrice > currentPrice
+                ? '<span style="font-size:9px; background:rgba(16,185,129,0.18); color:var(--green); padding:2px 6px; border-radius:4px; font-weight:700;">UPGRADE</span>'
+                : '<span style="font-size:9px; background:rgba(245,158,11,0.18); color:var(--amber); padding:2px 6px; border-radius:4px; font-weight:700;">DOWNGRADE</span>';
+        }
+
+        return `
+            <div class="pkg-option ${isCurrent ? 'selected' : ''}" onclick="selectPackageTarget('${p.name}', ${pPrice}, '${p.speed || ''}', ${isCurrent}, this)">
+                <div>
+                    <b style="color:var(--text);">${p.name}</b> ${isCurrent ? '<span style="font-size:10px; color:var(--accent); font-weight:700;">(Paket Saat Ini)</span>' : badgeType}
+                    <div style="font-size: 11px; color: var(--text-muted);">${p.speed || '-'}</div>
+                </div>
+                <div style="font-weight: 800; color: var(--green); font-size: 13px;">
+                    ${rupiah(pPrice)}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function selectPackageTarget(pkgName, pkgPrice, pkgSpeed, isCurrent, el) {
+    if (isCurrent) {
+        alert('Ini adalah paket Anda saat ini. Silakan pilih paket lain untuk upgrade atau downgrade.');
+        return;
+    }
+    selectedTargetPackage = { name: pkgName, price: pkgPrice, speed: pkgSpeed };
+    document.querySelectorAll('.pkg-option').forEach(x => x.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+async function submitUpgradeRequest() {
+    if (!selectedTargetPackage) {
+        alert('Silakan pilih paket tujuan terlebih dahulu.');
+        return;
+    }
+
+    const c = currentCustomerData.customer;
+    const isUpgrade = selectedTargetPackage.price > (c.price || 0);
+    const actionType = isUpgrade ? 'UPGRADE' : 'DOWNGRADE';
+    const reqTime = new Date().toLocaleString('id-ID');
+
+    const btn = document.getElementById('btnSubmitUpgrade');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> MENGIRIM KE BILLING...';
+
+    try {
+        const requestId = makePortalRequestId('upgrade');
+        const saved = await persistPortalMutation(db => {
+            if (!Array.isArray(db.notifications)) db.notifications = [];
+            const existing = db.notifications.find(n => n && String(n.portalRequestId || '') === String(requestId));
+            if (existing) return { requestId, duplicate: true };
+
+            const target = selectedTargetPackage;
+            const now = Date.now();
+            db.notifications.unshift({
+                id: now + Math.random(),
+                time: reqTime,
+                title: `Permintaan ${actionType} Paket: ${target.name}`,
+                msg: `[PERMINTAAN PERUBAHAN PAKET] <b>${escapeHTML(c.name)}</b> (${escapeHTML(c.id)}) - WA: ${escapeHTML(c.phone)}<br>` +
+                    `Pelanggan meminta ubah paket layanan dari <b>${escapeHTML(c.package || '-')}</b> ke <b>${escapeHTML(target.name)}</b>` +
+                    `<br>Kecepatan: <b>${escapeHTML(target.speed || '-')}</b><br>Harga: <b>${rupiah(target.price)}</b>`,
+                read: false,
+                source: 'FORM_PELANGGAN',
+                customerId: c.id,
+                targetCustomer: c.id,
+                phone: c.phone,
+                customerName: c.name,
+                category: 'Perubahan Paket',
+                requestType: actionType,
+                targetPackage: target.name,
+                targetSpeed: target.speed || '',
+                targetPrice: target.price,
+                messageType: 'customer_package_request',
+                threadId: `portal_upgrade_${c.id}`,
+                portalRequestId: requestId,
+                createdAt: now,
+                updatedAt: now
+            });
+            return { requestId, duplicate: false };
+        });
+        if (!saved) throw new Error('Permintaan tidak dapat disimpan.');
+
+        // Verifikasi server memakai GET baru. Tidak menganggap no-cors POST sebagai bukti sukses.
+        await executeLoginWithPhone(c.phone, true);
+        const upgradeSaved = (activeDatabase.notifications || []).some(n => String(n.portalRequestId || '') === String(requestId));
+        if (!upgradeSaved) throw new Error('Permintaan upgrade belum terkonfirmasi oleh Cloud.');
+
+        document.getElementById('upgradeStatusBox').style.display = 'block';
+        document.getElementById('upgradeStatusText').innerHTML = `
+            <i class="fas fa-clock"></i> <b>Permintaan Terkirim ke Billing (${actionType} - WAITING)</b><br>
+            Permintaan perubahan ke <b>${selectedTargetPackage.name}</b> telah terkirim ke antrean sistem Billing Owner/Admin.`;
+        btn.style.display = 'none';
+
+        renderMessageHistory();
+        showToast(`Permintaan ${actionType} berhasil dikirim ke Billing!`);
+    } catch (err) {
+        alert('Gagal mengirim permintaan ke sistem. Silakan coba kembali.');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = 'KIRIM PERMINTAAN PERUBAHAN';
+    }
+}
+
+// LAPOR GANGGUAN MURNI PUSH NOTIFIKASI KE CLOUD DB
+async function handleSendTicket(e) {
+    e.preventDefault();
+    if (!currentCustomerData || !currentCustomerData.customer) return;
+
+    const cat = document.getElementById('ticketCategory').value;
+    const note = document.getElementById('ticketNote').value.trim();
+    const c = currentCustomerData.customer;
+    const reqTime = new Date().toLocaleString('id-ID');
+
+    if (!note) {
+        alert('Keterangan masalah wajib diisi.');
+        return;
+    }
+
+    const btn = document.getElementById('btnSubmitTicket');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> MENGIRIM KE BILLING...';
+
+    try {
+        const requestId = makePortalRequestId('ticket');
+        const device = (/mobile|android|iphone/i.test(navigator.userAgent)) ? 'HP / Mobile' : 'Desktop';
+        const saved = await persistPortalMutation(db => {
+            if (!Array.isArray(db.notifications)) db.notifications = [];
+            const existing = db.notifications.find(n => n && String(n.portalRequestId || '') === String(requestId));
+            if (existing) return { requestId, duplicate: true };
+
+            const now = Date.now();
+            db.notifications.unshift({
+                id: now + Math.random(),
+                time: reqTime,
+                title: `Lapor Gangguan: ${escapeHTML(cat)}`,
+                msg: `[LAPOR GANGGUAN] <b>${escapeHTML(c.name)}</b> (${escapeHTML(c.id)}) - WA: ${escapeHTML(c.phone)}<br>` +
+                    `Kategori: <b>${escapeHTML(cat)}</b><br>Keterangan: ${escapeHTML(note)}`,
+                read: false,
+                source: 'FORM_PELANGGAN',
+                customerId: c.id,
+                targetCustomer: c.id,
+                phone: c.phone,
+                customerName: c.name,
+                category: cat,
+                customerNote: note,
+                messageType: 'customer_ticket',
+                threadId: `portal_ticket_${c.id}`,
+                portalRequestId: requestId,
+                device,
+                createdAt: now,
+                updatedAt: now
+            });
+            return { requestId, duplicate: false };
+        });
+        if (!saved) throw new Error('Laporan tidak dapat disimpan.');
+
+        // Verifikasi server memakai GET baru. Tidak menganggap no-cors POST sebagai bukti sukses.
+        await executeLoginWithPhone(c.phone, true);
+        const ticketSaved = (activeDatabase.notifications || []).some(n => String(n.portalRequestId || '') === String(requestId));
+        if (!ticketSaved) throw new Error('Laporan belum terkonfirmasi oleh Cloud.');
+
+        document.getElementById('ticketReportForm').reset();
+        document.getElementById('ticketSentNotice').style.display = 'block';
+        renderMessageHistory();
+        showToast('Laporan gangguan berhasil dikirim ke Admin Billing.');
+    } catch (err) {
+        alert('Gagal mengirim laporan gangguan. Silakan coba kembali.');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> KIRIM LAPORAN KE ADMIN';
+    }
+}
+
+function handleLogout() {
+    if (!confirm('Keluar dari portal pelanggan?')) return;
+
+    // Putuskan seluruh state sesi sebelum reload agar data pelanggan lama
+    // tidak pernah tertinggal saat pengguna berikutnya membuka/login kembali.
+    activeDatabase = null;
+    portalApiPromise = null;
+    currentCustomerData = null;
+    activeCurrentBillInfo = null;
+    aiNotificationFingerprint = '';
+    aiRequestSeq++;
+    if (aiRequestController) {
+        try { aiRequestController.abort(); } catch (_) {}
+        aiRequestController = null;
+    }
+
+    const aiCard = document.getElementById('aiAssistantCard');
+    if (aiCard) aiCard.style.display = 'none';
+    syncAIFloatingButton();
+    document.getElementById('portalView').style.display = 'none';
+    document.getElementById('loginView').style.display = 'block';
+    document.getElementById('inputPhone').value = '';
+
+    // Reload penuh supaya DOM/cache runtime kembali benar-benar bersih.
+    window.location.reload();
+}
+
+// Inisialisasi Runtime: portal selalu mulai dari form login nomor WhatsApp.
+// Tidak ada auto-login/token link dan tidak ada pengambilan seluruh database saat halaman baru dibuka.
+window.onload = () => {
+    initPortalTheme();
+    applyPortalGreeting();
+    document.getElementById('portalView').style.display = 'none';
+    document.getElementById('loginView').style.display = 'block';
+};
+
+// Refresh data setelah pelanggan login. Satu timer saja, 30 detik, tanpa overlap.
+async function refreshPortalSession() {
+    if (document.visibilityState !== 'visible') return;
+    if (!currentCustomerData || portalApiPromise) return;
+    if (navigator.onLine === false) return;
+
+    const payModal = document.getElementById('modalPayment');
+    const upModal = document.getElementById('modalUpgrade');
+    const msgModal = document.getElementById('modalMsgThread');
+    if ((payModal && payModal.style.display === 'flex') ||
+        (upModal && upModal.style.display === 'flex') ||
+        (msgModal && msgModal.style.display === 'flex')) {
+        return;
+    }
+
+    const savedPhone = currentCustomerData.customer && normalizePhone(currentCustomerData.customer.phone);
+    if (!savedPhone) return;
+    await executeLoginWithPhone(savedPhone, true);
+}
+
+const aiAskModal = document.getElementById('aiAskModal');
+if (aiAskModal) {
+    aiAskModal.addEventListener('click', (e) => {
+        if (e.target === aiAskModal) closeAIAskModal();
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAIAskModal();
+});
+
+syncAIFloatingButton();
+
+setInterval(refreshPortalSession, PORTAL_POLL_INTERVAL_MS);
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && currentCustomerData) {
+        // Saat kembali ke tab, sinkronkan sekali. Guard di atas mencegah overlap.
+        refreshPortalSession();
+    }
+});
+</script>
+
+<style>
+/* ===== RB HOME LIVE CHAT IN BANTUAN — UI PATCH ===== */
+.rb-livechat-help-card{margin-top:14px;overflow:hidden}
+.rb-livechat-help-head{display:flex;align-items:center;gap:12px}
+.rb-livechat-help-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1769e0,#2f73ff);color:#fff;font-size:20px;box-shadow:0 8px 18px rgba(23,105,224,.18)}
+.rb-livechat-help-head h3{margin:0 0 4px;font-size:15px;font-weight:800}
+.rb-livechat-help-head p{margin:0;color:var(--text-muted);font-size:11.5px;line-height:1.45}
+.rb-livechat-help-status{display:flex;align-items:center;gap:7px;margin:14px 0 10px;padding:9px 11px;border-radius:11px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.16);font-size:11px;font-weight:700;color:#16845e}
+.rb-livechat-help-dot{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 0 4px rgba(16,185,129,.12)}
+.rb-livechat-help-btn{width:100%;min-height:42px}
+@media(max-width:640px){.rb-livechat-help-card{margin-top:12px}.rb-livechat-help-head h3{font-size:14px}.rb-livechat-help-head p{font-size:11px}}
+/* ===== EXISTING LIVE CHAT OVERLAY ===== */
+.rb-livechat-fab{display:none!important;position:fixed;right:18px;bottom:82px;z-index:1200;border:0;border-radius:999px;padding:12px 16px;background:linear-gradient(135deg,#1769e0,#0d4fb8);color:#fff;font-weight:800;box-shadow:0 12px 30px rgba(13,79,184,.28);cursor:pointer;display:none;align-items:center;gap:8px}
+.rb-livechat-fab .rb-chat-dot{width:9px;height:9px;border-radius:50%;background:#ff8a00;box-shadow:0 0 0 4px rgba(255,138,0,.18)}
+.rb-livechat-overlay{position:fixed;inset:0;background:rgba(9,23,45,.48);backdrop-filter:blur(4px);z-index:1300;display:none;align-items:flex-end;justify-content:center;padding:16px}
+.rb-livechat-modal{width:min(760px,100%);height:min(760px,calc(100vh - 32px));background:var(--card,#fff);border:1px solid rgba(23,105,224,.16);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 28px 70px rgba(5,25,60,.28)}
+.rb-livechat-head{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1769e0,#0d4fb8);color:#fff}
+.rb-livechat-head h3{margin:0;font-size:15px}.rb-livechat-head small{opacity:.82}.rb-livechat-close{border:0;background:rgba(255,255,255,.14);color:#fff;width:34px;height:34px;border-radius:10px;cursor:pointer}
+.rb-livechat-body{flex:1;min-height:0;overflow:auto;padding:16px;background:linear-gradient(180deg,rgba(23,105,224,.035),transparent 28%),var(--bg,#f5f8fc)}
+.rb-chat-note{background:rgba(255,138,0,.10);border:1px solid rgba(255,138,0,.25);padding:10px 12px;border-radius:12px;font-size:11.5px;color:var(--text,#243247);margin-bottom:12px}
+.rb-chat-msg{display:flex;margin:8px 0}.rb-chat-msg.me{justify-content:flex-end}.rb-chat-bubble{max-width:min(78%,560px);padding:10px 12px;border-radius:15px 15px 15px 5px;background:var(--card,#fff);border:1px solid rgba(23,105,224,.10);box-shadow:0 4px 12px rgba(20,50,90,.05);font-size:12.5px;line-height:1.48;color:var(--text,#243247)}.rb-chat-msg.me .rb-chat-bubble{border-radius:15px 15px 5px 15px;background:#eaf2ff;border-color:rgba(23,105,224,.18)}
+.rb-chat-meta{font-size:9.5px;color:var(--text-muted,#718096);margin-top:5px}.rb-chat-compose{padding:12px;border-top:1px solid rgba(23,105,224,.10);background:var(--card,#fff);display:flex;gap:8px}.rb-chat-compose textarea{flex:1;min-height:44px;max-height:120px;resize:none;border:1px solid rgba(23,105,224,.18);border-radius:13px;padding:11px 12px;background:var(--bg,#f5f8fc);color:var(--text,#243247);outline:none}.rb-chat-send{border:0;border-radius:13px;padding:0 15px;background:#ff8a00;color:#fff;font-weight:800;cursor:pointer}.rb-chat-send:disabled{opacity:.55;cursor:not-allowed}
+.portal-livechat-nav-badge{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;padding:0 5px;border-radius:999px;background:#ef4444;color:#fff;font-size:9px;font-weight:900;line-height:17px;box-shadow:0 0 0 2px var(--card,#fff)}
+.rb-livechat-help-card{position:relative}.rb-livechat-help-card .rb-livechat-nav-badge{position:absolute;top:14px;right:14px;box-shadow:none}
+.rb-livechat-launch{display:inline-flex!important;align-items:center;gap:7px}
+@media(max-width:640px){.rb-livechat-overlay{padding:0;align-items:stretch}.rb-livechat-modal{height:100%;border-radius:0;border:0}.rb-livechat-fab{right:14px;bottom:76px}.rb-chat-bubble{max-width:86%}.rb-livechat-body{padding:12px}.rb-chat-compose{padding:9px}.rb-chat-send{padding:0 13px}}
+.rb-chat-compose-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}.rb-chat-template{width:100%;border:1px solid rgba(23,105,224,.16);border-radius:10px;padding:7px 9px;background:var(--bg,#f5f8fc);color:var(--text,#243247);font-size:11px;outline:none}.rb-chat-compose-tools{display:flex;justify-content:flex-start}.rb-chat-clear{border:0;background:transparent;color:#b4232d;font-size:10px;font-weight:800;padding:2px 0;cursor:pointer}[data-theme="dark"] .rb-livechat-modal{background:#101a2b;border-color:rgba(120,170,255,.18)}
+[data-theme="dark"] .rb-livechat-body{background:#0b1422}.rb-chat-msg.me .rb-chat-bubble{color:inherit}
+</style>
+<script>
+/* ===== RB HOME LIVE CHAT ADD-ON ===== */
+let rbPortalChatTimer = null;
+let rbPortalChatThreadId = '';
+function rbPortalChatCustomer(){ return currentCustomerData && currentCustomerData.customer ? currentCustomerData.customer : null; }
+function updatePortalLiveChatBadge(){
+  const c=rbPortalChatCustomer();
+  const el=document.getElementById('portalLiveChatNavBadge');
+  if(!el) return;
+  if(!c){el.style.display='none';return;}
+  const ns=Array.isArray(currentCustomerData?.notifications)?currentCustomerData.notifications:[];
+  const count=ns.filter(n=>n && n.source==='ADMIN_TO_PORTAL' && n.messageType==='live_chat_reply' && String(n.customerId||n.targetCustomer)===String(c.id) && n.read===false).length;
+  el.textContent=String(count);
+  el.style.display=count>0?'inline-flex':'none';
+  const cardBadge=document.getElementById('rbPortalLiveChatCardBadge');
+  if(cardBadge){cardBadge.textContent=String(count);cardBadge.style.display=count>0?'inline-flex':'none';}
+}
+
+function rbPortalChatItems(){
+  const c=rbPortalChatCustomer(); if(!c) return [];
+  const ns=Array.isArray(currentCustomerData.notifications)?currentCustomerData.notifications:[];
+  return ns.filter(n=>{
+    if(!n) return false;
+    const isLiveChatMessage = n.messageType==='live_chat' || n.messageType==='live_chat_reply';
+    if(!isLiveChatMessage) return false;
+    return (String(n.customerId||n.targetCustomer)===String(c.id) || (n.phone && normalizePhone(n.phone)===normalizePhone(c.phone)));
+  }).sort((a,b)=>(Number(a.createdAt)||0)-(Number(b.createdAt)||0));
+}
+function rbPortalChatEscape(v){return escapeHTML(String(v==null?'':v)).replace(/\n/g,'<br>');}
+function rbPortalChatFormatTime(n){return n.time || (n.createdAt?new Date(n.createdAt).toLocaleString('id-ID'):'');}
+function rbPortalChatRender(){
+  const body=document.getElementById('rbPortalChatBody'); if(!body) return;
+  const items=rbPortalChatItems();
+  if(!items.length){body.innerHTML='<div style="text-align:center;color:var(--text-muted);padding:48px 16px;font-size:12px;">Belum ada percakapan.<br><b style="color:var(--primary,#1769e0);">Silakan kirim pesan pertama.</b></div>';return;}
+  body.innerHTML='<div class="rb-chat-note"><b>💬 Live Chat RB HOME</b><br>Pesan Anda akan masuk ke antrean Admin/CS. Anda tetap bisa menggunakan AI Asisten untuk pertanyaan umum.</div>'+items.map(n=>{
+    const me=n.source==='FORM_PELANGGAN';
+    const text=String(n.msg||'').replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'');
+    return '<div class="rb-chat-msg '+(me?'me':'')+'"><div class="rb-chat-bubble">'+rbPortalChatEscape(text)+'<div class="rb-chat-meta">'+(me?'Anda':'Admin / CS')+' • '+rbPortalChatEscape(rbPortalChatFormatTime(n))+'</div></div></div>';
+  }).join('');
+  body.scrollTop=body.scrollHeight;
+}
+async function rbPortalChatRefresh(){
+  const c=rbPortalChatCustomer(); if(!c) return;
+  try{ await executeLoginWithPhone(c.phone,true); rbPortalChatRender(); updatePortalLiveChatBadge(); }catch(e){ console.warn('Live Chat refresh gagal',e); }
+}
+function openRBPortalLiveChat(){
+  if(!rbPortalChatCustomer()){showToast('Silakan login terlebih dahulu.');return;}
+  const ov=document.getElementById('rbPortalChatOverlay'); if(!ov)return;
+  ov.style.display='flex'; rbPortalChatRender();
+  clearInterval(rbPortalChatTimer); rbPortalChatTimer=setInterval(rbPortalChatRefresh,8000);
+  setTimeout(()=>document.getElementById('rbPortalChatInput')?.focus(),80);
+}
+function closeRBPortalLiveChat(){
+  const ov=document.getElementById('rbPortalChatOverlay');if(ov)ov.style.display='none';
+  clearInterval(rbPortalChatTimer);rbPortalChatTimer=null;
+}
+async function rbPortalChatSend(){
+  const input=document.getElementById('rbPortalChatInput'),btn=document.getElementById('rbPortalChatSend'); const c=rbPortalChatCustomer();
+  if(!input||!btn||!c)return; const text=input.value.trim(); if(!text)return;
+  btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
+  try{
+    const now=Date.now();
+    if(!rbPortalChatThreadId){
+      const prior=rbPortalChatItems().slice().reverse().find(n=>n.threadId);
+      rbPortalChatThreadId=prior?.threadId ? String(prior.threadId) : 'livechat_'+String(c.id)+'_'+now;
+    }
+    const threadId=rbPortalChatThreadId;
+    const saved=await persistPortalMutation(db=>{
+      if(!Array.isArray(db.notifications))db.notifications=[];
+      const duplicate=db.notifications.some(n=>n&&n.messageType==='live_chat'&&String(n.customerId)===String(c.id)&&String(n.clientMessageId||'')===String(now));
+      if(duplicate)return true;
+      db.notifications.unshift({id:now+Math.random(),time:new Date(now).toLocaleString('id-ID'),title:'Live Chat Pelanggan',msg:escapeHTML(text).replace(/\n/g,'<br>'),read:false,source:'FORM_PELANGGAN',customerId:c.id,targetCustomer:c.id,phone:c.phone,customerName:c.name,category:'Live Chat',messageType:'live_chat',threadId,clientMessageId:String(now),createdAt:now,updatedAt:now});
+      return true;
+    });
+    if(!saved)throw new Error('Pesan tidak dapat disimpan.');
+    input.value=''; await executeLoginWithPhone(c.phone,true); rbPortalChatRender();
+  }catch(e){console.error(e);showToast('❌ Pesan Live Chat gagal dikirim.');}
+  finally{btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i>'}
+}
+function rbPortalChatApplyTemplate(value){const input=document.getElementById('rbPortalChatInput');if(!input)return;if(value)input.value=value;const sel=document.getElementById('rbPortalChatTemplate');if(sel)sel.value='';input.focus();}
+async function rbPortalChatClear(){const c=rbPortalChatCustomer();if(!c)return;const items=rbPortalChatItems();if(!items.length){showToast('Belum ada chat untuk dibersihkan.');return;}if(!confirm('Bersihkan seluruh riwayat Live Chat ini? Pesan akan dihapus dan dicatat sebagai tombstone.'))return;const ids=items.map(n=>String(n.id));const ok=await persistPortalMutation(db=>{if(!Array.isArray(db.notifications))db.notifications=[];if(!Array.isArray(db.tombstones))db.tombstones=[];const set=new Set(ids);db.notifications=db.notifications.filter(n=>!set.has(String(n?.id)));ids.forEach(id=>{if(!db.tombstones.some(t=>t&&t.type==='notifications'&&String(t.id)===id))db.tombstones.push({type:'notifications',id,at:Date.now()});});return true;});if(!ok){showToast('❌ Gagal membersihkan Live Chat.');return;}rbPortalChatThreadId='';await executeLoginWithPhone(c.phone,true);rbPortalChatRender();updatePortalLiveChatBadge();showToast('✅ Riwayat Live Chat dibersihkan.');}
+
+async function rbPortalChatRequestCS(){
+  const c=rbPortalChatCustomer(); if(!c)return;
+  const input=document.getElementById('rbPortalChatInput'); if(input){input.value='Halo Admin/CS, saya ingin dibantu oleh petugas.';input.focus();}
+}
+function rbPortalChatInstall(){
+  if(document.getElementById('rbPortalChatOverlay'))return;
+  const ov=document.createElement('div');ov.id='rbPortalChatOverlay';ov.className='rb-livechat-overlay';ov.innerHTML='<div class="rb-livechat-modal"><div class="rb-livechat-head"><div><h3>💬 Live Chat RB HOME</h3><small>Admin / Customer Service</small></div><button class="rb-livechat-close" onclick="closeRBPortalLiveChat()"><i class="fas fa-times"></i></button></div><div id="rbPortalChatBody" class="rb-livechat-body"></div><div class="rb-chat-compose"><div class="rb-chat-compose-main"><select id="rbPortalChatTemplate" class="rb-chat-template" onchange="rbPortalChatApplyTemplate(this.value)"><option value="">Template pesan...</option><option value="Halo Admin/CS, saya ingin meminta bantuan terkait layanan RB HOME.">Minta bantuan</option><option value="Mohon dibantu cek kendala layanan internet saya.">Cek kendala</option><option value="Terima kasih Admin/CS atas bantuannya.">Terima kasih</option></select><textarea id="rbPortalChatInput" placeholder="Tulis pesan ke Admin / CS..." aria-label="Pesan Live Chat"></textarea><div class="rb-chat-compose-tools"><button type="button" class="rb-chat-clear" onclick="rbPortalChatClear()"><i class="fas fa-trash-can"></i> Bersihkan Chat</button></div></div><button id="rbPortalChatSend" class="rb-chat-send" onclick="rbPortalChatSend()" title="Kirim"><i class="fas fa-paper-plane"></i></button></div>';document.body.appendChild(ov);
+  document.getElementById('rbPortalChatInput')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();rbPortalChatSend();}});
+}
+function rbPortalChatSyncVisibility(){
+  // Live Chat tidak lagi memakai ikon/tombol melayang.
+  // Akses Live Chat hanya melalui menu Bantuan setelah pelanggan login.
+  const f=document.getElementById('rbPortalChatFab');
+  if(f) f.remove();
+}
+(function(){
+  const oldRender=window.renderPortalView; if(typeof oldRender==='function'&&!oldRender.__rbLiveChatWrapped){window.renderPortalView=function(){const r=oldRender.apply(this,arguments);rbPortalChatSyncVisibility();return r};window.renderPortalView.__rbLiveChatWrapped=true;}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{rbPortalChatInstall();rbPortalChatSyncVisibility()});else{rbPortalChatInstall();rbPortalChatSyncVisibility();}
+})();
+</script>
+
+</body>
+</html>
